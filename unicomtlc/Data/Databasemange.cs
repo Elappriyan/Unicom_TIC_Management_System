@@ -14,8 +14,8 @@ namespace unicomtlc.Data
                 CREATE TABLE IF NOT EXISTS Users (
                     UserID INTEGER PRIMARY KEY AUTOINCREMENT,
                     UserName TEXT NOT NULL,
-                    UserAddress TEXT NOT NULL,
-                   Role TEXT NOT NULL CHECK (Role IN ('Admin', 'Staff', 'Student', 'Lecturer'))
+                    Password TEXT NOT NULL,
+                    Role TEXT NOT NULL 
                 );
 
                 CREATE TABLE IF NOT EXISTS Course (

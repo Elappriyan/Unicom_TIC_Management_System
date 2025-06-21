@@ -10,7 +10,7 @@ namespace unicomtlc.Moddel
 {
     internal class Mark
     {
-        public int Id { get; set; }
+        public int MarkID { get; set; }
         public int StudentID { get; set; }  // Add this
         public int ExamID { get; set; }     // Add this
 

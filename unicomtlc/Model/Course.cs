@@ -10,9 +10,9 @@ namespace unicomtlc.Moddel
 {
     internal class Course
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-
+        public int CourseID { get; set; }
         
+        
+        public string CourseName { get; internal set; }
     }
 }

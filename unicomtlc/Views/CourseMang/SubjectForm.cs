@@ -43,8 +43,8 @@ namespace unicomtlc.Views.CourseMang
 
             CourseController courseController = new CourseController();
             couresbox.DataSource = courseController.GetAllCourses(); 
-            couresbox.DisplayMember = "Name"; 
-            couresbox.ValueMember = "ID";
+            couresbox.DisplayMember = "CourseName"; 
+            couresbox.ValueMember = "CourseID";
             //couresbox.selectedIndex = -1;
         }
         private void add_Click(object sender, EventArgs e)

@@ -38,6 +38,7 @@
             this.update = new System.Windows.Forms.Button();
             this.add = new System.Windows.Forms.Button();
             this.roomview = new System.Windows.Forms.DataGridView();
+            this.back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.roomview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,11 +135,22 @@
             this.roomview.TabIndex = 4;
             this.roomview.SelectionChanged += new System.EventHandler(this.roomview_SelectionChanged);
             // 
+            // back
+            // 
+            this.back.Location = new System.Drawing.Point(662, 390);
+            this.back.Name = "back";
+            this.back.Size = new System.Drawing.Size(106, 48);
+            this.back.TabIndex = 5;
+            this.back.Text = "Back";
+            this.back.UseVisualStyleBackColor = true;
+            this.back.Click += new System.EventHandler(this.back_Click);
+            // 
             // RoomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.back);
             this.Controls.Add(this.roomview);
             this.Controls.Add(this.add);
             this.Controls.Add(this.update);
@@ -170,5 +182,6 @@
         private System.Windows.Forms.Button update;
         private System.Windows.Forms.Button add;
         private System.Windows.Forms.DataGridView roomview;
+        private System.Windows.Forms.Button back;
     }
 }

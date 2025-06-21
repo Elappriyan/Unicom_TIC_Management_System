@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.sthudentidL = new System.Windows.Forms.Label();
-            this.name = new System.Windows.Forms.TextBox();
             this.clear = new System.Windows.Forms.Button();
             this.examidL = new System.Windows.Forms.Label();
             this.markL = new System.Windows.Forms.Label();
@@ -41,6 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.exambox = new System.Windows.Forms.ComboBox();
+            this.namebox = new System.Windows.Forms.ComboBox();
+            this.back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.markview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,13 +55,6 @@
             this.sthudentidL.Text = "Student Name";
             this.sthudentidL.Click += new System.EventHandler(this.label1_Click);
             // 
-            // name
-            // 
-            this.name.Location = new System.Drawing.Point(264, 110);
-            this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(158, 20);
-            this.name.TabIndex = 1;
-            // 
             // clear
             // 
             this.clear.Location = new System.Drawing.Point(267, 299);
@@ -69,6 +63,7 @@
             this.clear.TabIndex = 2;
             this.clear.Text = "Clear";
             this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
             // examidL
             // 
@@ -104,6 +99,7 @@
             this.update.TabIndex = 2;
             this.update.Text = "Update";
             this.update.UseVisualStyleBackColor = true;
+            this.update.Click += new System.EventHandler(this.update_Click);
             // 
             // add
             // 
@@ -130,15 +126,18 @@
             this.markview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.markview.Location = new System.Drawing.Point(470, 62);
             this.markview.Name = "markview";
-            this.markview.Size = new System.Drawing.Size(569, 491);
+            this.markview.Size = new System.Drawing.Size(496, 304);
             this.markview.TabIndex = 3;
+            this.markview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.markview_CellContentClick);
+            this.markview.SelectionChanged += new System.EventHandler(this.markview_SelectionChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(728, 29);
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(668, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(82, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mark list";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -161,11 +160,31 @@
             this.exambox.Size = new System.Drawing.Size(158, 21);
             this.exambox.TabIndex = 5;
             // 
+            // namebox
+            // 
+            this.namebox.FormattingEnabled = true;
+            this.namebox.Location = new System.Drawing.Point(267, 110);
+            this.namebox.Name = "namebox";
+            this.namebox.Size = new System.Drawing.Size(158, 21);
+            this.namebox.TabIndex = 5;
+            // 
+            // back
+            // 
+            this.back.Location = new System.Drawing.Point(903, 520);
+            this.back.Name = "back";
+            this.back.Size = new System.Drawing.Size(121, 40);
+            this.back.TabIndex = 6;
+            this.back.Text = "Back";
+            this.back.UseVisualStyleBackColor = true;
+            this.back.Click += new System.EventHandler(this.back_Click);
+            // 
             // MarkForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 647);
+            this.Controls.Add(this.back);
+            this.Controls.Add(this.namebox);
             this.Controls.Add(this.exambox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.markview);
@@ -173,7 +192,6 @@
             this.Controls.Add(this.update);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.markt);
-            this.Controls.Add(this.name);
             this.Controls.Add(this.markL);
             this.Controls.Add(this.examidL);
             this.Controls.Add(this.label1);
@@ -191,7 +209,6 @@
         #endregion
 
         private System.Windows.Forms.Label sthudentidL;
-        private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.Label examidL;
         private System.Windows.Forms.Label markL;
@@ -203,5 +220,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox exambox;
+        private System.Windows.Forms.ComboBox namebox;
+        private System.Windows.Forms.Button back;
     }
 }

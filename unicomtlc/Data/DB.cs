@@ -11,7 +11,7 @@ namespace unicomtlc.Data
     
         internal static class DB
         {
-            private static string ConnectionString = "Data Source=unicomtlc.db;Version=3;BusyTimeout=5000;";
+            private static string ConnectionString = "Data Source=unicomtlcDB.db;Version=3;BusyTimeout=5000;";
 
             public static SQLiteConnection GetConnection()
             {

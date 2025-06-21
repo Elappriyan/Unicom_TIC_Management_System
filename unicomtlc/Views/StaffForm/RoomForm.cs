@@ -147,6 +147,16 @@ namespace unicomtlc.Views.Staff
         {
 
         }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            Staffview form1 = new Staffview();
+            this.Hide();
+            form1.ShowDialog();
+
+
+            this.Show();
+        }
     }
     
 }

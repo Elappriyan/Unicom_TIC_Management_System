@@ -62,6 +62,7 @@
     <Compile Include="Controllers\StudentControllers.cs" />
     <Compile Include="Controllers\subjectController.cs" />
     <Compile Include="Controllers\TimetableController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Data\Databasemange.cs" />
     <Compile Include="Data\DB.cs" />
     <Compile Include="Form1.cs">
@@ -83,17 +84,17 @@
     <Compile Include="Model\Users.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Add Admin User.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Add Admin User.Designer.cs">
+      <DependentUpon>Add Admin User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\admin\AdminDetails.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\admin\AdminDetails.Designer.cs">
       <DependentUpon>AdminDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\admin\Adminform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\admin\Adminform.Designer.cs">
-      <DependentUpon>Adminform.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\admin\CouresForm.cs">
       <SubType>Form</SubType>
@@ -107,11 +108,23 @@
     <Compile Include="Views\CourseMang\SubjectForm.Designer.cs">
       <DependentUpon>SubjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Lecturerview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Lecturerview.Designer.cs">
+      <DependentUpon>Lecturerview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\StaffForm\RoomForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\StaffForm\RoomForm.Designer.cs">
       <DependentUpon>RoomForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staffview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Staffview.Designer.cs">
+      <DependentUpon>Staffview.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Student\StudentViewForm.cs">
       <SubType>Form</SubType>
@@ -137,11 +150,11 @@
     <Compile Include="Views\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainForm.cs">
+    <Compile Include="Views\Adminview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Views\Adminview.Designer.cs">
+      <DependentUpon>Adminview.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Lecturer\MarkForm.cs">
       <SubType>Form</SubType>
@@ -185,11 +198,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Add Admin User.resx">
+      <DependentUpon>Add Admin User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Adminview.resx">
+      <DependentUpon>Adminview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\admin\AdminDetails.resx">
       <DependentUpon>AdminDetails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\admin\Adminform.resx">
-      <DependentUpon>Adminform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\admin\CouresForm.resx">
       <DependentUpon>CouresForm.cs</DependentUpon>
@@ -197,8 +213,17 @@
     <EmbeddedResource Include="Views\CourseMang\SubjectForm.resx">
       <DependentUpon>SubjectForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Lecturerview.resx">
+      <DependentUpon>Lecturerview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\StaffForm\RoomForm.resx">
       <DependentUpon>RoomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staffview.resx">
+      <DependentUpon>Staffview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Student\StudentViewForm.resx">
       <DependentUpon>StudentViewForm.cs</DependentUpon>

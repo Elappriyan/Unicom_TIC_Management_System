@@ -19,20 +19,31 @@ namespace unicomtlc.Views
         private CourseController _courseController = new CourseController();
         private int selectedStudentid = -1;
 
-        public Students()
+        public Students(string username)
         {
             InitializeComponent();
             LoadCourses();
             LoadStudents();
         }
 
+        public Students()
+        {
+        }
+
         private void LoadCourses()
         {
-            var courseList = _courseController.GetAllCourses();
-            courseid.DataSource = courseList;
-            courseid.DisplayMember = "Name";
-            courseid.ValueMember = "ID";
+            courseid.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            CourseController courseController = new CourseController();
+            List<Course> courses = courseController.GetAllCourses();
+
+            courseid.DataSource = null;
+            courseid.DataSource = courses;
+            courseid.DisplayMember = "CourseName";
+            courseid.ValueMember = "CourseID"; 
+            courseid.SelectedIndex = -1;
         }
+
 
         private void LoadStudents()
         {
@@ -152,8 +163,13 @@ namespace unicomtlc.Views
         {
             if (courseid.SelectedItem is Course selectedCourse)
             {
-                Console.WriteLine("Selected Course ID: " + selectedCourse.ID);
+                Console.WriteLine("Selected Course ID: " + selectedCourse.CourseID);
             }
+        }
+
+        private void Students_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

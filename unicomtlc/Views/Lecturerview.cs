@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace unicomtlc.Views
 {
-    public partial class MainForm : Form
+    public partial class Lecturerview : Form
     {
-        public MainForm()
+        public Lecturerview()
         {
             InitializeComponent();
         }

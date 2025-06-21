@@ -58,26 +58,26 @@ namespace unicomtlc.Controllers
             using (var con = DB.GetConnection())
             {
 
-                string query = "UPDATE Marks SET StudentID = @StudentID, ExamID = @ExamID, Score = @Score WHERE Id = @Id";
+                string query = "UPDATE Marks SET StudentID = @StudentID, ExamID = @ExamID, Score = @Score WHERE MarkID = @Id";
                 using (var cmd = new SQLiteCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@StudentID", mark.StudentID);
                     cmd.Parameters.AddWithValue("@ExamID", mark.ExamID);
                     cmd.Parameters.AddWithValue("@Score", mark.Score);
-                    cmd.Parameters.AddWithValue("@Id", mark.Id);
+                    cmd.Parameters.AddWithValue("@Id", mark.MarkID);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
-        public void DeleteMark(int id)
+        public void DeleteMark(int MarkID)
         {
             using (var con = DB.GetConnection())
             {
 
-                string query = "DELETE FROM Marks WHERE Id = @Id";
+                string query = "DELETE FROM Marks WHERE MarkID = @Id";
                 using (var cmd = new SQLiteCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Parameters.AddWithValue("@Id", MarkID);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -88,12 +88,12 @@ namespace unicomtlc.Controllers
 
             using (var con = DB.GetConnection())
             {
-                
                 string query = @"
-                    SELECT m.Id, s.StudentID, s.StudentName, e.ExamID, e.ExamName, m.Score
-                    FROM Marks m
-                    JOIN Students s ON m.StudentID = s.StudentID
-                    JOIN Exams e ON m.ExamID = e.ExamID";
+            SELECT m.MarkID, m.StudentID, s.Name AS StudentName, e.ExamID, e.ExamName, m.Score
+            FROM Marks m
+            JOIN Students s ON m.StudentID = s.Id
+            JOIN Exams e ON m.ExamID = e.ExamID
+        ";
 
                 using (var cmd = new SQLiteCommand(query, con))
                 using (var reader = cmd.ExecuteReader())
@@ -102,10 +102,10 @@ namespace unicomtlc.Controllers
                     {
                         marks.Add(new Mark
                         {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            StudentID = Convert.ToInt32(reader["StudentID"]),
+                            MarkID = Convert.ToInt32(reader["MarkID"]),
+                            StudentID = Convert.ToInt32(reader["StudentID"]),       // changed from "Id" to "StudentID"
                             StudentName = reader["StudentName"].ToString(),
-                            ExamID = Convert.ToInt32(reader["ExamID"]),
+                            ExamID = Convert.ToInt32(reader["ExamID"]),             // Added ExamID to query, now accessible
                             ExamName = reader["ExamName"].ToString(),
                             Score = Convert.ToDouble(reader["Score"])
                         });
@@ -115,6 +115,10 @@ namespace unicomtlc.Controllers
 
             return marks;
         }
-        
+
+        internal object GetAllStudents()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -170,6 +170,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Students";
             this.Text = "Students";
+            this.Load += new System.EventHandler(this.Students_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Studentview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

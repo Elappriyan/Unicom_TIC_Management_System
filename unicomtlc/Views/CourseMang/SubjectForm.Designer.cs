@@ -97,9 +97,9 @@
             // SubjectView
             // 
             this.SubjectView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SubjectView.Location = new System.Drawing.Point(207, 258);
+            this.SubjectView.Location = new System.Drawing.Point(221, 258);
             this.SubjectView.Name = "SubjectView";
-            this.SubjectView.Size = new System.Drawing.Size(345, 150);
+            this.SubjectView.Size = new System.Drawing.Size(300, 150);
             this.SubjectView.TabIndex = 3;
             this.SubjectView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SubjectView_CellContentClick);
             // 

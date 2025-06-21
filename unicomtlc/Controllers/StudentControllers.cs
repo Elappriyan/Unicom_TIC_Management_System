@@ -46,7 +46,10 @@ namespace unicomtlc.Controllers
             using (var con = DB.GetConnection())
             {
             
-                string query = "SELECT * FROM Students";
+                string query = @"
+            SELECT s.Id, s.Name, s.Address, s.Age, s.CourseID, c.CourseName
+            FROM Students s
+            INNER JOIN Course c ON s.CourseID = c.CourseID";
                 using (SQLiteCommand cmd = new SQLiteCommand(query, con))
                 using (SQLiteDataReader reader = cmd.ExecuteReader())
                 {
@@ -55,11 +58,13 @@ namespace unicomtlc.Controllers
                     {
                         students.Add(new Student
                         {
-                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            Name = reader.GetString(reader.GetOrdinal("Name")),
-                            Address = reader.GetString(reader.GetOrdinal("Address")),
-                            Age = reader.GetString(reader.GetOrdinal("Age")),
-                            CourseID = reader.GetInt32(reader.GetOrdinal("CourseID"))
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Address = reader.GetString(2),
+                            Age = reader.GetString(3),
+                            CourseID = reader.GetInt32(4),
+                            CourseName = reader.GetString(5)
+
                         });
                     }
                 }
@@ -137,6 +142,7 @@ namespace unicomtlc.Controllers
                                 Address = reader.GetString(reader.GetOrdinal("Address")),
                                 Age = reader.GetString(reader.GetOrdinal("Age")),
                                 CourseID = reader.GetInt32(reader.GetOrdinal("CourseID"))
+                               
                             };
                         }
                     }

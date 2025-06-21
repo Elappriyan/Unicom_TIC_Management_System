@@ -19,10 +19,12 @@ namespace unicomtlc.Views
         private int selectedMarkId = -1;
         private MarkController controller = new MarkController();
         private readonly ExamController _Controller = new ExamController();
+
         public MarkForm()
         {
             InitializeComponent();
             LoadExamToComboBox();
+            LoadStudents();
         }
         private void LoadExamToComboBox()
         {
@@ -37,10 +39,19 @@ namespace unicomtlc.Views
         {
             var marks = controller.GetAllMarks();
             markview.DataSource = marks;
+
+            if (markview.Columns["StudentID"] != null)
+                markview.Columns["StudentID"].Visible = false;
+
+            if (markview.Columns["ExamID"] != null)
+                markview.Columns["ExamID"].Visible = false;
+
+            if (markview.Columns["MarkID"] != null)
+                markview.Columns["MarkID"].Visible = true;  
         }
         private void ClearFields()
         {
-            name.Clear();
+            namebox.SelectedIndex = -1;
             markt.Clear();
             exambox.SelectedIndex = -1;
             selectedMarkId = -1;
@@ -58,42 +69,67 @@ namespace unicomtlc.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (selectedMarkId == -1)
+            {
+                MessageBox.Show("Please select a mark to delete.");
+                return;
+            }
 
+            var confirmResult = MessageBox.Show("Are you sure to delete this mark?",
+                                                "Confirm Delete",
+                                                MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                controller.DeleteMark(selectedMarkId);
+                MessageBox.Show("Mark deleted successfully!");
+
+                LoadMarks();
+                ClearFields();
+            }
         }
 
         private void MarkForm_Load(object sender, EventArgs e)
         {
+            LoadMarks();
 
         }
 
         private void add_Click(object sender, EventArgs e)
         {
-            string studentName = name.Text.Trim();
-            double score;
-
-            if (string.IsNullOrEmpty(studentName) || exambox.SelectedValue == null || !double.TryParse(markt.Text, out score))
+            if (namebox.SelectedIndex == -1)
             {
-                MessageBox.Show("Please fill all fields correctly.");
+                MessageBox.Show("Please select a student.");
+                return;
+            }
+            int studentId = (int)namebox.SelectedValue;
+
+            
+            if (exambox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an exam.");
+                return;
+            }
+            int examId = (int)exambox.SelectedValue;
+
+            
+            if (!double.TryParse(markt.Text.Trim(), out double score))
+            {
+                MessageBox.Show("Please enter a valid score.");
                 return;
             }
 
-            int studentID = GetStudentIdByName(studentName);
-            if (studentID == -1)
-            {
-                MessageBox.Show("Student not found.");
-                return;
-            }
-
-            int examID = Convert.ToInt32(exambox.SelectedValue);
-
+            
             var mark = new Mark
             {
-                StudentID = studentID,
-                ExamID = examID,
+                StudentID = studentId,
+                ExamID = examId,
                 Score = score
             };
 
+           
             controller.AddMark(mark);
+
+            
             LoadMarks();
             ClearFields();
         }
@@ -102,17 +138,127 @@ namespace unicomtlc.Views
             using (var con = DB.GetConnection())
             {
                 
-                string query = "SELECT Id FROM Students WHERE Name = @name"; // 👈 Update this line
+                string query = "SELECT Id FROM Students WHERE name = @name"; // 👈 Update this line
                 using (var cmd = new SQLiteCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@name", Name);
+                    cmd.Parameters.AddWithValue("@name", name);
                     object result =cmd.ExecuteScalar();
                     return result != null ? Convert.ToInt32(result) : -1;
                 }
             }
+
         }
 
+        private void markview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void LoadStudents()
+        {
+            var students = new List<Student>();
+
+            using (var con = DB.GetConnection())
+            {
+                string query = "SELECT Id, Name FROM Students";
+
+                using (var cmd = new SQLiteCommand(query, con))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        students.Add(new Student
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Name = reader["Name"].ToString()
+                        });
+                    }
+                }
+            }
+
+            namebox.DropDownStyle = ComboBoxStyle.DropDownList;
+            namebox.DataSource = students;
+            namebox.DisplayMember = "Name";
+            namebox.ValueMember = "Id";
+            namebox.SelectedIndex = -1;
+        }
+
+        private void update_Click(object sender, EventArgs e)
+        {
+            if (selectedMarkId == -1)
+            {
+                MessageBox.Show("Please select a mark to update.");
+                return;
+            }
+
+            if (namebox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a student.");
+                return;
+            }
+            int studentId = (int)namebox.SelectedValue;
+
+            if (exambox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an exam.");
+                return;
+            }
+            int examId = (int)exambox.SelectedValue;
+
+            if (!double.TryParse(markt.Text.Trim(), out double score))
+            {
+                MessageBox.Show("Please enter a valid score.");
+                return;
+            }
+
+            var mark = new Mark
+            {
+                MarkID = selectedMarkId,
+                StudentID = studentId,
+                ExamID = examId,
+                Score = score
+            };
+
+            controller.UpdateMark(mark);
+            LoadMarks();
+            ClearFields();
+        }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void markview_SelectionChanged(object sender, EventArgs e)
+        {
+            if (markview.SelectedRows.Count > 0)
+            {
+                var row = markview.SelectedRows[0];
+
+                if (row.Cells["MarkID"].Value != null)
+                {
+                    selectedMarkId = Convert.ToInt32(row.Cells["MarkID"].Value);
+                    namebox.SelectedValue = Convert.ToInt32(row.Cells["StudentID"].Value);
+                    exambox.SelectedValue = Convert.ToInt32(row.Cells["ExamID"].Value);
+                    markt.Text = row.Cells["Score"].Value.ToString();
+                }
+            }
+            else
+            {
+                
+                ClearFields();
+            }
+
+        }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            Staffview form1 = new Staffview();
+            this.Hide();
+            form1.ShowDialog();
 
 
+            this.Show();
+        }
     }
 }
+

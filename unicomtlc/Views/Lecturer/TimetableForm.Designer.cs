@@ -43,6 +43,7 @@
             this.timetableview = new System.Windows.Forms.DataGridView();
             this.dele = new System.Windows.Forms.Button();
             this.update = new System.Windows.Forms.Button();
+            this.black = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.timetableview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,11 +181,22 @@
             this.update.Text = "Update";
             this.update.UseVisualStyleBackColor = true;
             // 
+            // black
+            // 
+            this.black.Location = new System.Drawing.Point(713, 533);
+            this.black.Name = "black";
+            this.black.Size = new System.Drawing.Size(148, 39);
+            this.black.TabIndex = 6;
+            this.black.Text = "Back";
+            this.black.UseVisualStyleBackColor = true;
+            this.black.Click += new System.EventHandler(this.black_Click);
+            // 
             // TimetableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(885, 639);
+            this.Controls.Add(this.black);
             this.Controls.Add(this.update);
             this.Controls.Add(this.dele);
             this.Controls.Add(this.timetableview);
@@ -226,5 +238,6 @@
         private System.Windows.Forms.DataGridView timetableview;
         private System.Windows.Forms.Button dele;
         private System.Windows.Forms.Button update;
+        private System.Windows.Forms.Button black;
     }
 }

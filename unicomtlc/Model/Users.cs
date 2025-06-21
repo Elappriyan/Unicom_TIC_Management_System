@@ -12,17 +12,11 @@ namespace unicomtlc.Moddel
     {
         public int UserID { get; set; }
         public string UserName { get; set; }
-        public string UserPassword { get; set; }
-        public string role { get; set; }
+        public string Password { get; set; }
+        public string Role { get; set; }
 
         public Users() { }
 
-        public Users(int userID, string userName, string userPassword, string role)
-        {
-            UserID = userID;
-            UserName = userName;
-            UserPassword = userPassword;
-            this.role = role;
-        }
+        
     }
 }

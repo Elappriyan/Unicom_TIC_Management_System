@@ -39,6 +39,7 @@
             this.clear = new System.Windows.Forms.Button();
             this.staffview = new System.Windows.Forms.DataGridView();
             this.delete = new System.Windows.Forms.Button();
+            this.xbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.staffview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,7 +132,7 @@
             // 
             // delete
             // 
-            this.delete.Location = new System.Drawing.Point(104, 323);
+            this.delete.Location = new System.Drawing.Point(100, 323);
             this.delete.Name = "delete";
             this.delete.Size = new System.Drawing.Size(75, 23);
             this.delete.TabIndex = 3;
@@ -139,11 +140,23 @@
             this.delete.UseVisualStyleBackColor = true;
             this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
+            // xbtn
+            // 
+            this.xbtn.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xbtn.Location = new System.Drawing.Point(686, 394);
+            this.xbtn.Name = "xbtn";
+            this.xbtn.Size = new System.Drawing.Size(161, 52);
+            this.xbtn.TabIndex = 5;
+            this.xbtn.Text = "Back";
+            this.xbtn.UseVisualStyleBackColor = true;
+            this.xbtn.Click += new System.EventHandler(this.xbtn_Click);
+            // 
             // Staff_Information
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(859, 450);
+            this.Controls.Add(this.xbtn);
             this.Controls.Add(this.staffview);
             this.Controls.Add(this.clear);
             this.Controls.Add(this.delete);
@@ -177,5 +190,6 @@
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.DataGridView staffview;
         private System.Windows.Forms.Button delete;
+        private System.Windows.Forms.Button xbtn;
     }
 }

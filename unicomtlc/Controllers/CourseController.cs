@@ -16,7 +16,7 @@ namespace unicomtlc.Controllers
             using (var con = DB.GetConnection())
             {
                 var command  = new SQLiteCommand ("INSERT INTO Course(CourseName) VALUES(@name)", con);
-                command.Parameters.AddWithValue("@name", course.Name);
+                command.Parameters.AddWithValue("@name", course.CourseName);
                 command.ExecuteNonQuery ();
                 
 
@@ -33,15 +33,14 @@ namespace unicomtlc.Controllers
             {
                 using (var con = DB.GetConnection())
                 {
-                   
                     using (SQLiteCommand getCommand = new SQLiteCommand(getCourseQuery, con))
                     using (var reader = getCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Course course1 = new Course(); 
-                            course1.ID = reader.GetInt32(0);
-                            course1.Name = reader.GetString(1);
+                            Course course1 = new Course();
+                            course1.CourseID = reader.GetInt32(0);
+                            course1.CourseName = reader.GetString(1);
                             courses.Add(course1);
                         }
                     }
@@ -49,17 +48,16 @@ namespace unicomtlc.Controllers
             }
             catch (SQLiteException ex)
             {
-               
                 Console.WriteLine($"Database error: {ex.Message}");
             }
             catch (Exception ex)
             {
-              
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
 
-            return courses; 
+            return courses;
         }
+
         public void UpdateCourse(Course course)
         {
             using (var conn = DB.GetConnection())
@@ -67,8 +65,8 @@ namespace unicomtlc.Controllers
              
                 var cmd = conn.CreateCommand();
                 cmd.CommandText = "UPDATE Course SET CourseName = @CourseName WHERE CourseID = @id";
-                cmd.Parameters.AddWithValue("@CourseName", course.Name);
-                cmd.Parameters.AddWithValue("@id", course.ID);
+                cmd.Parameters.AddWithValue("@CourseName", course.CourseName);
+                cmd.Parameters.AddWithValue("@id", course.CourseID);
                 cmd.ExecuteNonQuery(); 
             }
         }

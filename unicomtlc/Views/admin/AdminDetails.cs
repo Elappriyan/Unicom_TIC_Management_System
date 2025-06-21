@@ -73,8 +73,9 @@ namespace unicomtlc.Views
         private void backBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Adminform form = new Adminform();
-            form.ShowDialog();
+            MainForm adminview = new MainForm();
+            adminview.ShowDialog();
+
         }
 
         private void adminName_TextChanged(object sender, EventArgs e)

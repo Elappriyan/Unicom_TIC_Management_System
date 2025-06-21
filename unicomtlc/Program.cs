@@ -21,11 +21,13 @@ namespace unicomtlc
         static void Main()
         {
             Databasemange.creatTable();
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Adminview());
+            Application.Run(new Staffview());
+           // Application.Run(new LoginForm());
 
-            Application.Run(new MarkForm());
         }
     }
 }

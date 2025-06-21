@@ -42,7 +42,7 @@ namespace unicomtlc.Views.admin
         private void add_Click(object sender, EventArgs e)
         {
             Course course = new Course();
-            course.Name = name.Text;
+            course.CourseName = name.Text;
 
             courseController.AddCourse(course);
             MessageBox.Show("Course added successfully.");
@@ -75,8 +75,8 @@ namespace unicomtlc.Views.admin
 
             Course updatedCourse = new Course
             {
-                ID = selectedCoruesid,
-                Name = name.Text
+                CourseID = selectedCoruesid,
+                CourseName = name.Text
             };
 
             courseController.UpdateCourse(updatedCourse);
@@ -121,6 +121,11 @@ namespace unicomtlc.Views.admin
                 ClearForm();
                 selectedCoruesid = -1;
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            
         }
     }
 }

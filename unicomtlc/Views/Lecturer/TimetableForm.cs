@@ -30,6 +30,16 @@ namespace unicomtlc.Views
             LoadDays();
             LoadTimes();
             LoadTimeTables();
+            /*this.BackColor = Color.Red;  // Form background black
+
+            Button blackBtn = new Button();
+            blackBtn.Text = "Black Button";
+            blackBtn.BackColor = Color.Red;
+            blackBtn.ForeColor = Color.White;
+            blackBtn.Size = new Size(120, 40);
+            blackBtn.Location = new Point(50, 50);
+
+            this.Controls.Add(blackBtn);*/
         }
         private void LoadLecturers()
         {
@@ -186,6 +196,16 @@ namespace unicomtlc.Views
         private void timetableview_SelectionChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void black_Click(object sender, EventArgs e)
+        {
+            Staffview form1 = new Staffview();
+            this.Hide();
+            form1.ShowDialog();
+
+            
+            this.Show();  
         }
     }
 }
