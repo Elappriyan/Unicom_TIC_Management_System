@@ -47,7 +47,7 @@
             // 
             // mark
             // 
-            this.mark.Location = new System.Drawing.Point(217, 111);
+            this.mark.Location = new System.Drawing.Point(217, 87);
             this.mark.Name = "mark";
             this.mark.Size = new System.Drawing.Size(264, 23);
             this.mark.TabIndex = 1;
@@ -57,17 +57,17 @@
             // 
             // room
             // 
-            this.room.Location = new System.Drawing.Point(217, 167);
+            this.room.Location = new System.Drawing.Point(217, 128);
             this.room.Name = "room";
             this.room.Size = new System.Drawing.Size(264, 23);
             this.room.TabIndex = 2;
-            this.room.Text = "View Room";
+            this.room.Text = "View Room Add/Delete";
             this.room.UseVisualStyleBackColor = true;
             this.room.Click += new System.EventHandler(this.room_Click);
             // 
             // Staff
             // 
-            this.Staff.Location = new System.Drawing.Point(217, 237);
+            this.Staff.Location = new System.Drawing.Point(217, 175);
             this.Staff.Name = "Staff";
             this.Staff.Size = new System.Drawing.Size(264, 23);
             this.Staff.TabIndex = 3;

@@ -11,18 +11,21 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using unicomtlc.Controllers;
 using unicomtlc.Moddel;
+using unicomtlc;
+using unicomtlc.Views;
 
 namespace unicomtlc.Views.admin
 {
     public partial class CourseForm : Form
     {
-        CourseController courseController;
+        private Form _previousForm;
+        readonly CourseController courseController;
         private int selectedCoruesid = -1;
-        public CourseForm()
+        public CourseForm(Form previousForm)
         {
             courseController = new CourseController();
             InitializeComponent();
-           
+            _previousForm = previousForm;
             Loadcourse();
 
         }
@@ -39,33 +42,27 @@ namespace unicomtlc.Views.admin
             couresview.ClearSelection();
         }
 
-        private void add_Click(object sender, EventArgs e)
+        private void Add_Click(object sender, EventArgs e)
         {
-            Course course = new Course();
-            course.CourseName = name.Text;
+            Course course = new Course
+            {
+                CourseName = name.Text
+            };
 
             courseController.AddCourse(course);
             MessageBox.Show("Course added successfully.");
 
             Loadcourse();
-          
+
         }
         private void ClearForm()
         {
             name.Clear();
             
         }
-        private void name_TextChanged(object sender, EventArgs e)
-        {
+        
 
-        }
-
-        private void couresview_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void update_Click(object sender, EventArgs e)
+        private void Update_Click(object sender, EventArgs e)
         {
             if (selectedCoruesid == -1)
             {
@@ -85,7 +82,7 @@ namespace unicomtlc.Views.admin
            
         }
 
-        private void couresview_SelectionChanged(object sender, EventArgs e)
+        private void Couresview_SelectionChanged(object sender, EventArgs e)
         {
             if (couresview.SelectedRows.Count > 0)
             {
@@ -104,7 +101,7 @@ namespace unicomtlc.Views.admin
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             if (selectedCoruesid == -1)
             {
@@ -123,9 +120,17 @@ namespace unicomtlc.Views.admin
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click_3(object sender, EventArgs e)
         {
-            
+            this.Close();           // இப்போதுள்ள form மூடும்
+            _previousForm?.Show();
         }
+
+
+
+        private void Button1_Click_1(object sender, EventArgs e){}
+        private void Button1_Click_2(object sender, EventArgs e){}
+        private void Name_TextChanged(object sender, EventArgs e){}
+        private void Couresview_CellContentClick(object sender, DataGridViewCellEventArgs e){}        
     }
 }

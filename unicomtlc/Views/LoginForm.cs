@@ -47,9 +47,9 @@ namespace unicomtlc.Views
 
                             if (role == "Admin")
                             {
-                                // Admin dashboard
-                                MainForm adminForm = new MainForm(username, role);
+                                Adminview adminForm = new Adminview(username, role, this);
                                 adminForm.Show();
+                                this.Hide();
                             }
                             else if (role == "Lecturer")
                             {

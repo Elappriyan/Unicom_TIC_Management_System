@@ -84,7 +84,7 @@
             this.roleM.Name = "roleM";
             this.roleM.Size = new System.Drawing.Size(157, 21);
             this.roleM.TabIndex = 2;
-            this.roleM.SelectedIndexChanged += new System.EventHandler(this.roleM_SelectedIndexChanged);
+            this.roleM.SelectedIndexChanged += new System.EventHandler(this.RoleM_SelectedIndexChanged);
             // 
             // newB
             // 
@@ -94,7 +94,7 @@
             this.newB.TabIndex = 3;
             this.newB.Text = "New";
             this.newB.UseVisualStyleBackColor = true;
-            this.newB.Click += new System.EventHandler(this.button1_Click);
+            this.newB.Click += new System.EventHandler(this.Button1_Click);
             // 
             // name
             // 
@@ -111,7 +111,7 @@
             this.saveB.TabIndex = 3;
             this.saveB.Text = "Save";
             this.saveB.UseVisualStyleBackColor = true;
-            this.saveB.Click += new System.EventHandler(this.button2_Click);
+            this.saveB.Click += new System.EventHandler(this.Button2_Click);
             // 
             // editB
             // 
@@ -121,7 +121,7 @@
             this.editB.TabIndex = 3;
             this.editB.Text = "Edit";
             this.editB.UseVisualStyleBackColor = true;
-            this.editB.Click += new System.EventHandler(this.button3_Click);
+            this.editB.Click += new System.EventHandler(this.Button3_Click);
             // 
             // deleteB
             // 
@@ -131,7 +131,7 @@
             this.deleteB.TabIndex = 3;
             this.deleteB.Text = "Delete";
             this.deleteB.UseVisualStyleBackColor = true;
-            this.deleteB.Click += new System.EventHandler(this.button4_Click);
+            this.deleteB.Click += new System.EventHandler(this.Button4_Click);
             // 
             // cancelB
             // 
@@ -141,7 +141,7 @@
             this.cancelB.TabIndex = 3;
             this.cancelB.Text = "Cancel";
             this.cancelB.UseVisualStyleBackColor = true;
-            this.cancelB.Click += new System.EventHandler(this.button5_Click);
+            this.cancelB.Click += new System.EventHandler(this.Button5_Click);
             // 
             // Addview
             // 

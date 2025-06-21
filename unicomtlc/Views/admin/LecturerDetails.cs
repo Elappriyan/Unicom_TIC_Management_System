@@ -23,6 +23,7 @@ namespace unicomtlc.Views
             InitializeComponent();
             controller = new LecturerController();
             LoadLecturers();
+
         }
         private void LoadLecturers()
         {
@@ -180,6 +181,33 @@ namespace unicomtlc.Views
                 ClearInputs();
                 selectedLecturerID = -1;
             }
+
+
         }
+        public DataTable GetAllLecturers()
+        {
+            DataTable dt = new DataTable();
+
+            foreach (DataGridViewColumn column in lecturerview.Columns)
+            {
+                dt.Columns.Add(column.Name);
+            }
+
+            foreach (DataGridViewRow row in lecturerview.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    DataRow dr = dt.NewRow();
+                    foreach (DataGridViewColumn column in lecturerview.Columns)
+                    {
+                        dr[column.Name] = row.Cells[column.Name].Value ?? DBNull.Value;
+                    }
+                    dt.Rows.Add(dr);
+                }
+            }
+
+            return dt;
+        }
+
     }
 }

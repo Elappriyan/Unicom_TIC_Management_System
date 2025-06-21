@@ -14,6 +14,7 @@ namespace unicomtlc.Views
 {
     public partial class TimetableForm : Form
     {
+        private Form _previousForm;
         private readonly TimetableController _controller = new TimetableController();
         private int selectedTimeTableId = -1;
 
@@ -21,7 +22,7 @@ namespace unicomtlc.Views
         private subjectController _subjectController = new subjectController();
         private RoomController _roomController = new RoomController();
 
-        public TimetableForm()
+        public TimetableForm(Lecturerview lecturerview)
         {
             InitializeComponent();
             LoadLecturers();
@@ -30,6 +31,8 @@ namespace unicomtlc.Views
             LoadDays();
             LoadTimes();
             LoadTimeTables();
+            this._previousForm = lecturerview;
+            
             /*this.BackColor = Color.Red;  // Form background black
 
             Button blackBtn = new Button();
@@ -41,6 +44,21 @@ namespace unicomtlc.Views
 
             this.Controls.Add(blackBtn);*/
         }
+        
+
+        
+        
+
+        public TimetableForm(Staffview staffview)
+        {
+            InitializeComponent();
+            this._previousForm = staffview;
+        }
+
+        public TimetableForm()
+        {
+        }
+
         private void LoadLecturers()
         {
             var lecturers = _lecturerController.GetAllLecturers(); 
@@ -200,12 +218,20 @@ namespace unicomtlc.Views
 
         private void black_Click(object sender, EventArgs e)
         {
-            Staffview form1 = new Staffview();
+            /*Staffview form1 = new Staffview();
             this.Hide();
             form1.ShowDialog();
 
             
-            this.Show();  
+            this.Show();*/
+            /*  this.Close();
+              _previousForm.Show();*/
+            this.Close();
+
+            if (_previousForm != null)
+                _previousForm.Show();
+            else
+                MessageBox.Show("Previous form reference is missing.", "Warning");
         }
     }
 }

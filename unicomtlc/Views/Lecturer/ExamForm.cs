@@ -16,16 +16,22 @@ namespace unicomtlc.Views
 {
     public partial class ExamForm : Form
     {
+        private readonly Form _previousForm;
         private readonly ExamController _examController = new ExamController();
         private readonly subjectController _subjectController = new subjectController();
         private int selectedExamId = -1;
-        public ExamForm()
+        public ExamForm(Form previousForm)
         {
             InitializeComponent();
-            examview.SelectionChanged += examview_SelectionChanged;
+            _previousForm = previousForm;
+            examview.SelectionChanged += Examview_SelectionChanged;
             LoadSubjectsToComboBox();
             LoadExams();
+            
         }
+
+        
+
         private void LoadSubjectsToComboBox()
         {
             var subjects = _subjectController.GetAllSubjectsWithCourseName();
@@ -50,17 +56,17 @@ namespace unicomtlc.Views
 
             examview.ClearSelection();
         }
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void examdate_Click(object sender, EventArgs e)
+        private void Examdate_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void add_Click(object sender, EventArgs e)
+        private void Add_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(nexam.Text) || subjectbox.SelectedIndex == -1)
             {
@@ -82,7 +88,7 @@ namespace unicomtlc.Views
             MessageBox.Show("Exam added successfully!");
         }
 
-        private void update_Click(object sender, EventArgs e)
+        private void Update_Click(object sender, EventArgs e)
         {
             if (selectedExamId == -1)
             {
@@ -111,7 +117,7 @@ namespace unicomtlc.Views
             MessageBox.Show("Exam updated successfully!");
         }
 
-        private void delete_Click(object sender, EventArgs e)
+        private void Delete_Click(object sender, EventArgs e)
         {
             if (selectedExamId == -1)
             {
@@ -140,12 +146,12 @@ namespace unicomtlc.Views
             examview.ClearSelection();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            Console.WriteLine($"Selected date: {date.Value.ToString("yyyy-MM-dd")}");
+            Console.WriteLine(value: $"Selected date: {date.Value.ToString("yyyy-MM-dd")}");
         }
 
-        private void examview_SelectionChanged(object sender, EventArgs e)
+        private void Examview_SelectionChanged(object sender, EventArgs e)
         {
             if (examview.SelectedRows.Count > 0)
             {
@@ -163,6 +169,27 @@ namespace unicomtlc.Views
                     subjectbox.SelectedValue = subjectId;
                 }
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            /*Lecturerview form1 = new Lecturerview();
+            form1.Show();
+
+            // Close or hide Form2
+            this.Close();  // orForm1 form1 = new Form1();
+            form1.Show();*/
+
+
+            this.Close();
+            _previousForm?.Show();
+
+
+        }
+
+        private void ExamForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
     

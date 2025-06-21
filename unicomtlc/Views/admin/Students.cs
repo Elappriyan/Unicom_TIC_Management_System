@@ -15,15 +15,22 @@ namespace unicomtlc.Views
 {
     public partial class Students : Form
     {
+        private readonly Form _previousForm;
         private StudentController _controller = new StudentController();
         private CourseController _courseController = new CourseController();
         private int selectedStudentid = -1;
 
-        public Students(string username)
+        public Students(string username, Form previousForm)
         {
             InitializeComponent();
             LoadCourses();
             LoadStudents();
+            _previousForm = previousForm;
+            label1.Text = $"Welcome, {username}";
+        }
+
+        public Students(Adminview adminview)
+        {
         }
 
         public Students()
@@ -170,6 +177,12 @@ namespace unicomtlc.Views
         private void Students_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();                // Close Students form
+            _previousForm?.Show();
         }
     }
 }

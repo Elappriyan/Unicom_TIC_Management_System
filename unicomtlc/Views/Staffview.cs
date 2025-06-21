@@ -22,8 +22,9 @@ namespace unicomtlc.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TimetableForm  sf = new TimetableForm();
-            sf.ShowDialog();
+            TimetableForm timetable = new TimetableForm(this); // Pass this
+            this.Hide();
+            timetable.Show();
         }
 
         private void Staffview_Load(object sender, EventArgs e)
@@ -33,8 +34,14 @@ namespace unicomtlc.Views
 
         private void mark_Click(object sender, EventArgs e)
         {
-            MarkForm sf = new MarkForm();
-            sf.ShowDialog();
+            ExamForm ex = new ExamForm(this); // Pass this
+            this.Hide();
+            ex.Show();
+
+            MarkForm ma = new MarkForm(this);
+            this.Hide();
+            ma.Show();
+           
         }
 
         private void room_Click(object sender, EventArgs e)
@@ -56,7 +63,7 @@ namespace unicomtlc.Views
             form1.ShowDialog();
 
 
-            this.Show();
+            //this.Show();
         }
     }
 }

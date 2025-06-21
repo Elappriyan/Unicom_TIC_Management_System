@@ -13,19 +13,37 @@ using unicomtlc.Data;
 using unicomtlc.Moddel;
 
 namespace unicomtlc.Views
-{
+{ 
+
     public partial class MarkForm : Form
     {
+        private readonly Form _previousForm;
         private int selectedMarkId = -1;
-        private MarkController controller = new MarkController();
+        private readonly MarkController controller = new MarkController();
+        private readonly Form previousForm;
         private readonly ExamController _Controller = new ExamController();
 
-        public MarkForm()
+        public MarkForm(Staffview staffview)
         {
             InitializeComponent();
             LoadExamToComboBox();
             LoadStudents();
+            _previousForm = previousForm;
         }
+
+        public MarkForm(Lecturerview lecturerview)
+        {
+            InitializeComponent();
+            LoadExamToComboBox();
+            LoadStudents();
+            LoadMarks();
+            _previousForm = lecturerview;
+        }
+
+        public MarkForm()
+        {
+        }
+
         private void LoadExamToComboBox()
         {
             var exams = _Controller.GetAllExam();
@@ -57,17 +75,17 @@ namespace unicomtlc.Views
             selectedMarkId = -1;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void markL_Click(object sender, EventArgs e)
+        private void MarkL_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             if (selectedMarkId == -1)
             {
@@ -94,7 +112,7 @@ namespace unicomtlc.Views
 
         }
 
-        private void add_Click(object sender, EventArgs e)
+        private void Add_Click(object sender, EventArgs e)
         {
             if (namebox.SelectedIndex == -1)
             {
@@ -133,26 +151,7 @@ namespace unicomtlc.Views
             LoadMarks();
             ClearFields();
         }
-        private int GetStudentIdByName(string name)
-        {
-            using (var con = DB.GetConnection())
-            {
-                
-                string query = "SELECT Id FROM Students WHERE name = @name"; // 👈 Update this line
-                using (var cmd = new SQLiteCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@name", name);
-                    object result =cmd.ExecuteScalar();
-                    return result != null ? Convert.ToInt32(result) : -1;
-                }
-            }
-
-        }
-
-        private void markview_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
         private void LoadStudents()
         {
             var students = new List<Student>();
@@ -182,7 +181,7 @@ namespace unicomtlc.Views
             namebox.SelectedIndex = -1;
         }
 
-        private void update_Click(object sender, EventArgs e)
+        private void Update_Click(object sender, EventArgs e)
         {
             if (selectedMarkId == -1)
             {
@@ -223,12 +222,12 @@ namespace unicomtlc.Views
             ClearFields();
         }
 
-        private void clear_Click(object sender, EventArgs e)
+        private void Clear_Click(object sender, EventArgs e)
         {
             ClearFields();
         }
 
-        private void markview_SelectionChanged(object sender, EventArgs e)
+        private void Markview_SelectionChanged(object sender, EventArgs e)
         {
             if (markview.SelectedRows.Count > 0)
             {
@@ -250,14 +249,16 @@ namespace unicomtlc.Views
 
         }
 
-        private void back_Click(object sender, EventArgs e)
+      
+
+        private void Back_Click(object sender, EventArgs e)
         {
-            Staffview form1 = new Staffview();
-            this.Hide();
-            form1.ShowDialog();
 
+        }
 
-            this.Show();
+        private void Markview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

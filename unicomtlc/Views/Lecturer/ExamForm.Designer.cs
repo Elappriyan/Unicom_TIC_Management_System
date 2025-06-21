@@ -39,6 +39,7 @@
             this.subject = new System.Windows.Forms.Label();
             this.subjectbox = new System.Windows.Forms.ComboBox();
             this.date = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.examview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             this.label1.Size = new System.Drawing.Size(84, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Exam Managent";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // add
             // 
@@ -69,7 +70,7 @@
             this.add.TabIndex = 2;
             this.add.Text = "Add";
             this.add.UseVisualStyleBackColor = true;
-            this.add.Click += new System.EventHandler(this.add_Click);
+            this.add.Click += new System.EventHandler(this.Add_Click);
             // 
             // update
             // 
@@ -79,7 +80,7 @@
             this.update.TabIndex = 2;
             this.update.Text = "Update";
             this.update.UseVisualStyleBackColor = true;
-            this.update.Click += new System.EventHandler(this.update_Click);
+            this.update.Click += new System.EventHandler(this.Update_Click);
             // 
             // delete
             // 
@@ -89,7 +90,7 @@
             this.delete.TabIndex = 2;
             this.delete.Text = "Delete";
             this.delete.UseVisualStyleBackColor = true;
-            this.delete.Click += new System.EventHandler(this.delete_Click);
+            this.delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // nexam
             // 
@@ -106,7 +107,7 @@
             this.examdate.Size = new System.Drawing.Size(59, 13);
             this.examdate.TabIndex = 0;
             this.examdate.Text = "Exam Date";
-            this.examdate.Click += new System.EventHandler(this.examdate_Click);
+            this.examdate.Click += new System.EventHandler(this.Examdate_Click);
             // 
             // examview
             // 
@@ -115,7 +116,7 @@
             this.examview.Name = "examview";
             this.examview.Size = new System.Drawing.Size(438, 206);
             this.examview.TabIndex = 3;
-            this.examview.SelectionChanged += new System.EventHandler(this.examview_SelectionChanged);
+            this.examview.SelectionChanged += new System.EventHandler(this.Examview_SelectionChanged);
             // 
             // subject
             // 
@@ -125,7 +126,7 @@
             this.subject.Size = new System.Drawing.Size(43, 13);
             this.subject.TabIndex = 0;
             this.subject.Text = "Subject";
-            this.subject.Click += new System.EventHandler(this.examdate_Click);
+            this.subject.Click += new System.EventHandler(this.Examdate_Click);
             // 
             // subjectbox
             // 
@@ -141,13 +142,24 @@
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(200, 20);
             this.date.TabIndex = 5;
-            this.date.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.date.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(665, 363);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 47);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // ExamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.date);
             this.Controls.Add(this.subjectbox);
             this.Controls.Add(this.examview);
@@ -161,6 +173,7 @@
             this.Controls.Add(this.exam);
             this.Name = "ExamForm";
             this.Text = "ExamDate";
+            this.Load += new System.EventHandler(this.ExamForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.examview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -180,5 +193,6 @@
         private System.Windows.Forms.Label subject;
         private System.Windows.Forms.ComboBox subjectbox;
         private System.Windows.Forms.DateTimePicker date;
+        private System.Windows.Forms.Button button1;
     }
 }

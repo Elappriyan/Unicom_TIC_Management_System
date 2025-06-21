@@ -13,91 +13,120 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace unicomtlc.Views
 {
-    public partial class MainForm : Form
+    public partial class Adminview : Form
     {
-        private string loggedUser;
-        private string userRole;
+        private readonly Form _previousForm;
+        private readonly string  loggedUser;
+        private readonly string userRole;
+        
+        
+       
 
-        public MainForm(string username, string role)
+        public Adminview(string username, string role, Form previousForm)
         {
             InitializeComponent();
             loggedUser = username;
             userRole = role;
+            _previousForm = previousForm;
         }
 
+        public Adminview()
+        {
+            
+            
+        }
+
+       
+
+        /*
         public MainForm()
         {
         }
+
+        public MainForm(CourseForm courseForm)
+        {
+            this.courseForm = courseForm;
+        }*/
 
         private void Adminview_Load(object sender, EventArgs e)
         {
             label1.Text = $"Welcome {loggedUser} ({userRole})!";
         }
 
-        private void course_subject_Click(object sender, EventArgs e)
+        private void Course_subject_Click(object sender, EventArgs e)
         {
-            
-            CourseForm courseForm = new CourseForm();
-            courseForm.ShowDialog();
+            CourseForm courseForm = new CourseForm(this);
+            this.Hide();
+            courseForm.Show();
 
-            SubjectForm subjectForm = new SubjectForm();
-            subjectForm.ShowDialog();
         }
 
-        private void studentM_Click(object sender, EventArgs e)
+        private void StudentM_Click(object sender, EventArgs e)
         {
-            
-            Students students = new Students(); 
+            this.Hide();                         // hide Adminview
+            Students students = new Students(loggedUser, this);// pass Adminview to Students form
             students.ShowDialog();
         }
 
-        private void staffM_Click(object sender, EventArgs e)
+        private void StaffM_Click(object sender, EventArgs e)
         {
-            
+            this.Hide();
             Staff_Information  staff_Information = new Staff_Information();
             staff_Information.ShowDialog();
         }
 
-        private void exam_marksM_Click(object sender, EventArgs e)
-        {
-            
-            ExamForm examForm = new ExamForm();
+        private void Exam_marksM_Click(object sender, EventArgs e)
+        {   
+            this.Hide();
+            ExamForm examForm = new ExamForm(this);
             examForm.ShowDialog();
-
-
-            MarkForm markForm = new MarkForm(); 
-            markForm.ShowDialog();
+                      
         }
 
-        private void timetableM_Click(object sender, EventArgs e)
+        private void TimetableM_Click(object sender, EventArgs e)
         {
             
             TimetableForm timetableForm = new TimetableForm();
             timetableForm.ShowDialog();
         }
 
-        private void lecturerM_Click(object sender, EventArgs e)
+        private void LecturerM_Click(object sender, EventArgs e)
         {
             
             LecturerDetails lecturerDetails = new LecturerDetails();
             lecturerDetails.ShowDialog();
         }
 
-        private void addM_Click(object sender, EventArgs e)
+        private void AddM_Click(object sender, EventArgs e)
         {
            
             Add_Admin_User add_Admin_User = new Add_Admin_User();
             add_Admin_User.ShowDialog();
         }
 
-        private void logout_Click(object sender, EventArgs e)
+        private void Logout_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            label1.Text = $"Welcome {loggedUser} ({userRole})!";
+        }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            SubjectForm subjectForm = new SubjectForm();
+            subjectForm.ShowDialog();
+
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();  // Hide Adminview
+            MarkForm markForm = new MarkForm(this);  // pass current form as previousForm
+            markForm.ShowDialog();
+            this.Show();
         }
     }
 }

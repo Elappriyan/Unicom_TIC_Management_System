@@ -16,14 +16,14 @@ namespace unicomtlc.Views
 {
     public partial class Add_Admin_User : Form
     {
-        UsersController usersController = new UsersController();
+        readonly UsersController usersController = new UsersController();
         int selectedUserId = -1;
 
 
         public Add_Admin_User()
         {
             InitializeComponent();
-            
+
             UsersController usersController = new UsersController();
             LoadRoles();
             LoadUsers();
@@ -52,7 +52,7 @@ namespace unicomtlc.Views
                 roleM.Items.Add("Staff");
                 roleM.SelectedIndex = 0; 
         }
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
            
 
@@ -60,7 +60,7 @@ namespace unicomtlc.Views
             LoadUsers();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             if (selectedUserId == -1)
             {
@@ -74,7 +74,7 @@ namespace unicomtlc.Views
             ClearForm();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             if (selectedUserId == -1)
             {
@@ -98,7 +98,7 @@ namespace unicomtlc.Views
            
         }
         
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(name.Text) ||
                 string.IsNullOrWhiteSpace(password.Text) ||
@@ -125,7 +125,7 @@ namespace unicomtlc.Views
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             /*MainMenu mainMenu = new MainMenu();
             mainMenu.Show();
@@ -150,7 +150,7 @@ namespace unicomtlc.Views
             }*/
         }
 
-        private void roleM_SelectedIndexChanged(object sender, EventArgs e)
+        private void RoleM_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

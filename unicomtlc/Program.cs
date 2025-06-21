@@ -24,9 +24,10 @@ namespace unicomtlc
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Adminview());
-            Application.Run(new Staffview());
-           // Application.Run(new LoginForm());
+            //Application.Run(new ());
+             Application.Run(new LoginForm());
+           
+            //Application.Run(new LoginForm());
 
         }
     }

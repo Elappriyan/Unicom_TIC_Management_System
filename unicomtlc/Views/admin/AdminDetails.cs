@@ -9,14 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using unicomtlc.Controllers;
 using unicomtlc.Moddel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace unicomtlc.Views
 {
+    
     public partial class AdminDetails : Form
     {
-        public AdminDetails()
+        private readonly string _username;
+        private readonly string _role;
+        private readonly Form _previousForm;
+        public AdminDetails(string username, string role, Form previousForm)
         {
             InitializeComponent();
+            _username = username;
+            _role = role;
+            _previousForm = previousForm;
             LoadStudent();
         }
 
@@ -72,10 +80,8 @@ namespace unicomtlc.Views
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainForm adminview = new MainForm();
-            adminview.ShowDialog();
-
+            _previousForm?.Show(); // Go back to the previous form
+            this.Close();
         }
 
         private void adminName_TextChanged(object sender, EventArgs e)

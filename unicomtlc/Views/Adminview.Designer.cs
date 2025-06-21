@@ -1,6 +1,6 @@
 ﻿namespace unicomtlc.Views
 {
-    partial class MainForm
+    partial class Adminview
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,8 @@
             this.logout = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.addM = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // course_subject
@@ -45,9 +47,9 @@
             this.course_subject.Name = "course_subject";
             this.course_subject.Size = new System.Drawing.Size(165, 78);
             this.course_subject.TabIndex = 0;
-            this.course_subject.Text = "Course & Subject Management ";
+            this.course_subject.Text = "Course Management ";
             this.course_subject.UseVisualStyleBackColor = true;
-            this.course_subject.Click += new System.EventHandler(this.course_subject_Click);
+            this.course_subject.Click += new System.EventHandler(this.Course_subject_Click);
             // 
             // exam_marksM
             // 
@@ -55,9 +57,9 @@
             this.exam_marksM.Name = "exam_marksM";
             this.exam_marksM.Size = new System.Drawing.Size(165, 78);
             this.exam_marksM.TabIndex = 0;
-            this.exam_marksM.Text = " Exam & Marks Management";
+            this.exam_marksM.Text = " Exam Management";
             this.exam_marksM.UseVisualStyleBackColor = true;
-            this.exam_marksM.Click += new System.EventHandler(this.exam_marksM_Click);
+            this.exam_marksM.Click += new System.EventHandler(this.Exam_marksM_Click);
             // 
             // studentM
             // 
@@ -67,7 +69,7 @@
             this.studentM.TabIndex = 0;
             this.studentM.Text = "Student Management ";
             this.studentM.UseVisualStyleBackColor = true;
-            this.studentM.Click += new System.EventHandler(this.studentM_Click);
+            this.studentM.Click += new System.EventHandler(this.StudentM_Click);
             // 
             // lecturerM
             // 
@@ -77,7 +79,7 @@
             this.lecturerM.TabIndex = 0;
             this.lecturerM.Text = "Lecturer Management";
             this.lecturerM.UseVisualStyleBackColor = true;
-            this.lecturerM.Click += new System.EventHandler(this.lecturerM_Click);
+            this.lecturerM.Click += new System.EventHandler(this.LecturerM_Click);
             // 
             // timetableM
             // 
@@ -87,7 +89,7 @@
             this.timetableM.TabIndex = 0;
             this.timetableM.Text = " Timetable Management";
             this.timetableM.UseVisualStyleBackColor = true;
-            this.timetableM.Click += new System.EventHandler(this.timetableM_Click);
+            this.timetableM.Click += new System.EventHandler(this.TimetableM_Click);
             // 
             // staffM
             // 
@@ -97,7 +99,7 @@
             this.staffM.TabIndex = 0;
             this.staffM.Text = "Staff Management";
             this.staffM.UseVisualStyleBackColor = true;
-            this.staffM.Click += new System.EventHandler(this.staffM_Click);
+            this.staffM.Click += new System.EventHandler(this.StaffM_Click);
             // 
             // logout
             // 
@@ -107,7 +109,7 @@
             this.logout.TabIndex = 0;
             this.logout.Text = "Logout";
             this.logout.UseVisualStyleBackColor = true;
-            this.logout.Click += new System.EventHandler(this.logout_Click);
+            this.logout.Click += new System.EventHandler(this.Logout_Click);
             // 
             // label1
             // 
@@ -127,13 +129,35 @@
             this.addM.TabIndex = 0;
             this.addM.Text = " Add User/Admin";
             this.addM.UseVisualStyleBackColor = true;
-            this.addM.Click += new System.EventHandler(this.addM_Click);
+            this.addM.Click += new System.EventHandler(this.AddM_Click);
             // 
-            // MainForm
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(205, 390);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(165, 78);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Subject Management";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(630, 390);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(165, 78);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Mark Managment";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // Adminview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1070, 614);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.logout);
             this.Controls.Add(this.timetableM);
@@ -143,7 +167,7 @@
             this.Controls.Add(this.studentM);
             this.Controls.Add(this.exam_marksM);
             this.Controls.Add(this.course_subject);
-            this.Name = "MainForm";
+            this.Name = "Adminview";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
@@ -162,5 +186,7 @@
         private System.Windows.Forms.Button logout;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addM;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

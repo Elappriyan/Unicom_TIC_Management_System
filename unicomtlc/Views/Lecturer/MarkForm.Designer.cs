@@ -53,7 +53,7 @@
             this.sthudentidL.Size = new System.Drawing.Size(75, 13);
             this.sthudentidL.TabIndex = 0;
             this.sthudentidL.Text = "Student Name";
-            this.sthudentidL.Click += new System.EventHandler(this.label1_Click);
+            this.sthudentidL.Click += new System.EventHandler(this.Label1_Click);
             // 
             // clear
             // 
@@ -63,7 +63,7 @@
             this.clear.TabIndex = 2;
             this.clear.Text = "Clear";
             this.clear.UseVisualStyleBackColor = true;
-            this.clear.Click += new System.EventHandler(this.clear_Click);
+            this.clear.Click += new System.EventHandler(this.Clear_Click);
             // 
             // examidL
             // 
@@ -82,7 +82,7 @@
             this.markL.Size = new System.Drawing.Size(35, 13);
             this.markL.TabIndex = 0;
             this.markL.Text = "Score";
-            this.markL.Click += new System.EventHandler(this.markL_Click);
+            this.markL.Click += new System.EventHandler(this.MarkL_Click);
             // 
             // markt
             // 
@@ -99,7 +99,7 @@
             this.update.TabIndex = 2;
             this.update.Text = "Update";
             this.update.UseVisualStyleBackColor = true;
-            this.update.Click += new System.EventHandler(this.update_Click);
+            this.update.Click += new System.EventHandler(this.Update_Click);
             // 
             // add
             // 
@@ -109,7 +109,7 @@
             this.add.TabIndex = 2;
             this.add.Text = "Add";
             this.add.UseVisualStyleBackColor = true;
-            this.add.Click += new System.EventHandler(this.add_Click);
+            this.add.Click += new System.EventHandler(this.Add_Click);
             // 
             // label4
             // 
@@ -119,7 +119,7 @@
             this.label4.Size = new System.Drawing.Size(81, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "Enter The Mark";
-            this.label4.Click += new System.EventHandler(this.label1_Click);
+            this.label4.Click += new System.EventHandler(this.Label1_Click);
             // 
             // markview
             // 
@@ -128,8 +128,8 @@
             this.markview.Name = "markview";
             this.markview.Size = new System.Drawing.Size(496, 304);
             this.markview.TabIndex = 3;
-            this.markview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.markview_CellContentClick);
-            this.markview.SelectionChanged += new System.EventHandler(this.markview_SelectionChanged);
+            this.markview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Markview_CellContentClick);
+            this.markview.SelectionChanged += new System.EventHandler(this.Markview_SelectionChanged);
             // 
             // label1
             // 
@@ -140,7 +140,7 @@
             this.label1.Size = new System.Drawing.Size(82, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mark list";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // button1
             // 
@@ -150,7 +150,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Delete";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // exambox
             // 
@@ -176,7 +176,7 @@
             this.back.TabIndex = 6;
             this.back.Text = "Back";
             this.back.UseVisualStyleBackColor = true;
-            this.back.Click += new System.EventHandler(this.back_Click);
+            this.back.Click += new System.EventHandler(this.Back_Click);
             // 
             // MarkForm
             // 
