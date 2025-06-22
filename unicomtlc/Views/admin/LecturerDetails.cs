@@ -18,9 +18,11 @@ namespace unicomtlc.Views
     {
         private LecturerController controller = new LecturerController();
         private int selectedLecturerID = -1;
-        public LecturerDetails()
+        private readonly Form _previousForm;
+        public LecturerDetails(Adminview adminview)
         {
             InitializeComponent();
+            _previousForm = adminview;
             controller = new LecturerController();
             LoadLecturers();
 
@@ -77,7 +79,7 @@ namespace unicomtlc.Views
                 return;
             }
 
-            // Create Lecturer object
+            
             Lecturer lecturer = new Lecturer
             {
                 FullName = name.Text.Trim(),
@@ -130,7 +132,7 @@ namespace unicomtlc.Views
                 FullName = name.Text.Trim(),
                 Email = gmail.Text.Trim(),
                 PhoneNumber = phonenumber.Text.Trim(),
-                Department = department.Text.Trim() // Make sure this is the right TextBox
+                Department = department.Text.Trim() 
             };
 
             try
@@ -184,30 +186,15 @@ namespace unicomtlc.Views
 
 
         }
-        public DataTable GetAllLecturers()
+        
+
+        private void Back_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-
-            foreach (DataGridViewColumn column in lecturerview.Columns)
-            {
-                dt.Columns.Add(column.Name);
-            }
-
-            foreach (DataGridViewRow row in lecturerview.Rows)
-            {
-                if (!row.IsNewRow)
-                {
-                    DataRow dr = dt.NewRow();
-                    foreach (DataGridViewColumn column in lecturerview.Columns)
-                    {
-                        dr[column.Name] = row.Cells[column.Name].Value ?? DBNull.Value;
-                    }
-                    dt.Rows.Add(dr);
-                }
-            }
-
-            return dt;
+            this.Close();              
+            _previousForm?.Show();
         }
 
+       
     }
+
 }

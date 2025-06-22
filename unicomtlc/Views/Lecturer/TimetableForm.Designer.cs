@@ -158,8 +158,9 @@
             this.timetableview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.timetableview.Location = new System.Drawing.Point(298, 129);
             this.timetableview.Name = "timetableview";
-            this.timetableview.Size = new System.Drawing.Size(520, 237);
+            this.timetableview.Size = new System.Drawing.Size(584, 275);
             this.timetableview.TabIndex = 3;
+            this.timetableview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.timetableview_CellContentClick);
             this.timetableview.SelectionChanged += new System.EventHandler(this.timetableview_SelectionChanged);
             // 
             // dele

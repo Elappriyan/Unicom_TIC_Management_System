@@ -19,13 +19,15 @@ namespace unicomtlc.Views.CourseMang
     {
         subjectController controller;
         private CourseController courseController;
-        
-        public SubjectForm()
+        private readonly Form _previousForm;
+        public SubjectForm(Adminview adminview)
         {
            controller = new subjectController();
             InitializeComponent();
             courseController = new CourseController();
-             LoadSubjects();
+
+            _previousForm = adminview;
+            LoadSubjects();
         }
         private void SubjectForm_Load(object sender, EventArgs e)
         {
@@ -68,16 +70,25 @@ namespace unicomtlc.Views.CourseMang
 
         private void delete_Click(object sender, EventArgs e)
         {
-            if (SubjectView.CurrentRow?.DataBoundItem is Subject selectedSubject)
-
+            if (SubjectView.CurrentRow != null)
             {
-                var confirm = MessageBox.Show("Are you sure you want to delete this subject?",
-                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                
+                var cellValue = SubjectView.CurrentRow.Cells["ID"].Value;
 
-                if (confirm == DialogResult.Yes)
+                if (cellValue != null && int.TryParse(cellValue.ToString(), out int subjectId))
                 {
-                    controller.DeleteSubject(selectedSubject.ID);
-                    LoadSubjects(); 
+                    var confirm = MessageBox.Show("Are you sure you want to delete this subject?",
+                        "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (confirm == DialogResult.Yes)
+                    {
+                        controller.DeleteSubject(subjectId);
+                        LoadSubjects();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Could not find valid subject ID.");
                 }
             }
             else
@@ -89,6 +100,51 @@ namespace unicomtlc.Views.CourseMang
         private void SubjectView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+            this.Close();  
+            _previousForm?.Show();
+        }
+
+        private void SubjectView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (SubjectView.SelectedRows.Count > 0)
+            {
+                var selectedRow = SubjectView.SelectedRows[0];
+
+                string subjectName = "";
+                object courseIdValue = null;
+
+                if (SubjectView.Columns.Contains("Name"))
+                    subjectName = selectedRow.Cells["Name"].Value?.ToString() ?? "";
+
+                // Try a few likely column names for course id, e.g. "CourseID", "Coursename", or check your datasource for exact column name
+                if (SubjectView.Columns.Contains("CourseID"))
+                    courseIdValue = selectedRow.Cells["CourseID"].Value;
+                else if (SubjectView.Columns.Contains("Coursename"))
+                    courseIdValue = selectedRow.Cells["Coursename"].Value;
+                else if (SubjectView.Columns.Contains("CourseName"))
+                    courseIdValue = selectedRow.Cells["CourseName"].Value;
+
+                // Update controls
+                name.Text = subjectName;
+
+                if (courseIdValue != null && int.TryParse(courseIdValue.ToString(), out int courseId))
+                {
+                    couresbox.SelectedValue = courseId;
+                }
+                else
+                {
+                    couresbox.SelectedIndex = -1;
+                }
+            }
+            else
+            {
+                name.Clear();
+                couresbox.SelectedIndex = -1;
+            }
         }
     }
     

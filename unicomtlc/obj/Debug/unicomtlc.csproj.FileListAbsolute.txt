@@ -6,6 +6,7 @@ Z:\C#\unicomtlc\unicomtlc\bin\Debug\System.Data.SQLite.xml
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.csproj.AssemblyReference.cache
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.Properties.Resources.resources
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.Views.Add_Admin_User.resources
+Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.Views.Adminview.resources
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.Views.AdminDetails.resources
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.Views.admin.CourseForm.resources
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.Views.CourseMang.SubjectForm.resources
@@ -25,4 +26,3 @@ Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.csproj.CoreCompileInputs.cache
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.csproj.Up2Date
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.exe
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.pdb
-Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.Views.Adminview.resources

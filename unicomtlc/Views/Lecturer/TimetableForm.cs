@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using unicomtlc.Controllers;
 using unicomtlc.Moddel;
+using unicomtlc.Views.admin;
 
 namespace unicomtlc.Views
 {
@@ -44,10 +45,19 @@ namespace unicomtlc.Views
 
             this.Controls.Add(blackBtn);*/
         }
-        
+        public TimetableForm(Adminview adminview)
+        {
+            InitializeComponent();
+            this._previousForm = adminview;
+            LoadLecturers();
+            LoadSubjects();
+            LoadRooms();
+            LoadDays();
+            LoadTimes();
+            LoadTimeTables();
+        }
+       
 
-        
-        
 
         public TimetableForm(Staffview staffview)
         {
@@ -228,10 +238,17 @@ namespace unicomtlc.Views
               _previousForm.Show();*/
             this.Close();
 
+            this.Close();  // Close current form
+
             if (_previousForm != null)
-                _previousForm.Show();
+                _previousForm.Show();  // Show Adminview again
             else
                 MessageBox.Show("Previous form reference is missing.", "Warning");
+        }
+
+        private void timetableview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

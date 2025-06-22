@@ -18,12 +18,13 @@ namespace unicomtlc.Views
     {
         readonly UsersController usersController = new UsersController();
         int selectedUserId = -1;
+        private readonly Form _previousForm;
 
 
-        public Add_Admin_User()
+        public Add_Admin_User(Adminview adminview)
         {
             InitializeComponent();
-
+            _previousForm = adminview;
             UsersController usersController = new UsersController();
             LoadRoles();
             LoadUsers();
@@ -167,6 +168,12 @@ namespace unicomtlc.Views
                 roleM.SelectedItem = row.Cells["Role"].Value.ToString();
             }
 
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+            this.Close();             
+            _previousForm?.Show();
         }
     }
 }

@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using unicomtlc.Data;
 using unicomtlc.Moddel;
+using unicomtlc.Views.admin;
 
 namespace unicomtlc.Controllers
 {
     internal class TimetableController
     {
+
         public List<Lecturer> GetAllLecturers()
         {
             var lecturers = new List<Lecturer>();
 
             using (var conn = DB.GetConnection())
             {
-                string query = "SELECT LecturerID, LecturerName FROM Lecturers";  
+                string query = "SELECT * FROM Lecturers";
 
                 using (var cmd = new SQLiteCommand(query, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -27,7 +30,10 @@ namespace unicomtlc.Controllers
                         lecturers.Add(new Lecturer
                         {
                             ID = reader.GetInt32(0),
-                            FullName = reader.GetString(1)
+                            FullName = reader.GetString(1),
+                            Email = reader.GetString(2),
+                            PhoneNumber = reader.GetString(3),
+                            Department = reader.GetString(4)
                         });
                     }
                 }
@@ -36,6 +42,7 @@ namespace unicomtlc.Controllers
             return lecturers;
         }
 
+       
         public List<Subject> GetAllSubjects()
         {
             var subjects = new List<Subject>();
@@ -59,6 +66,24 @@ namespace unicomtlc.Controllers
             }
 
             return subjects;
+        }
+        public DataTable GetLecturersAsDataTable()
+        {
+            var lecturers = GetAllLecturers();
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("ID");
+            dt.Columns.Add("FullName");
+            dt.Columns.Add("Email");
+            dt.Columns.Add("PhoneNumber");
+            dt.Columns.Add("Department");
+
+            foreach (var l in lecturers)
+            {
+                dt.Rows.Add(l.ID, l.FullName, l.Email, l.PhoneNumber, l.Department);
+            }
+
+            return dt;
         }
         public List<Room> GetAllRooms()
         {

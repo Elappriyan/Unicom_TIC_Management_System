@@ -19,13 +19,54 @@ namespace unicomtlc.Views
 {
     public partial class Staff_Information : Form
     {
+        private DataTable staffTable;
+        private readonly Form _previousForm;
         private StaffController staffController;
         private int selectedStaffID = -1;
         public Staff_Information()
         {
             InitializeComponent();
+            
             staffController = new StaffController();
             LoadStaff();
+            
+        }
+        public Staff_Information(Form previousForm)
+        {
+            InitializeComponent();
+            _previousForm = previousForm;
+            staffController = new StaffController();
+            LoadStaff();
+        }
+        private void LoadStaffData()
+        {
+            staffTable = new DataTable();
+            staffTable.Columns.Add("ID");
+            staffTable.Columns.Add("Name");
+            staffTable.Columns.Add("Role");
+
+            staffTable.Rows.Add("1", "Nimal", "Admin");
+            staffTable.Rows.Add("2", "Kavya", "Lecturer");
+
+            staffview.DataSource = staffTable;
+        }
+        public DataTable GetStaffTable()
+        {
+            // Optionally return latest data from controller
+            var staffList = staffController.GetStaffView();
+            var table = new DataTable();
+
+            table.Columns.Add("StaffID");
+            table.Columns.Add("FullName");
+            table.Columns.Add("Email");
+            table.Columns.Add("PhoneNumber");
+
+            foreach (var staff in staffList)
+            {
+                table.Rows.Add(staff.StaffID, staff.FullName, staff.Email, staff.PhoneNumber);
+            }
+
+            return table;
         }
         private void LoadStaff()
         {
@@ -37,6 +78,7 @@ namespace unicomtlc.Views
             selectedStaffID = -1;
             ClearForm();
         }
+
         private void ClearForm()
         {
             fullname.Clear();
@@ -144,12 +186,8 @@ namespace unicomtlc.Views
 
         private void xbtn_Click(object sender, EventArgs e)
         {
-            Staffview form1 = new Staffview();
-            this.Hide();
-            form1.ShowDialog();
-
-
-            this.Show();
+            this.Close();
+            _previousForm?.Show();
 
         }
     }

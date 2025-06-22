@@ -37,6 +37,7 @@
             this.SubjectView = new System.Windows.Forms.DataGridView();
             this.couresname = new System.Windows.Forms.Label();
             this.couresbox = new System.Windows.Forms.ComboBox();
+            this.back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SubjectView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,6 +103,7 @@
             this.SubjectView.Size = new System.Drawing.Size(300, 150);
             this.SubjectView.TabIndex = 3;
             this.SubjectView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SubjectView_CellContentClick);
+            this.SubjectView.SelectionChanged += new System.EventHandler(this.SubjectView_SelectionChanged);
             // 
             // couresname
             // 
@@ -120,11 +122,22 @@
             this.couresbox.Size = new System.Drawing.Size(237, 21);
             this.couresbox.TabIndex = 4;
             // 
+            // back
+            // 
+            this.back.Location = new System.Drawing.Point(642, 338);
+            this.back.Name = "back";
+            this.back.Size = new System.Drawing.Size(75, 45);
+            this.back.TabIndex = 5;
+            this.back.Text = "Back";
+            this.back.UseVisualStyleBackColor = true;
+            this.back.Click += new System.EventHandler(this.Back_Click);
+            // 
             // SubjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.back);
             this.Controls.Add(this.couresbox);
             this.Controls.Add(this.SubjectView);
             this.Controls.Add(this.add);
@@ -154,5 +167,6 @@
         private System.Windows.Forms.DataGridView SubjectView;
         private System.Windows.Forms.Label couresname;
         private System.Windows.Forms.ComboBox couresbox;
+        private System.Windows.Forms.Button back;
     }
 }

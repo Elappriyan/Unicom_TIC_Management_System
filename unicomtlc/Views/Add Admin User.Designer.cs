@@ -40,6 +40,7 @@
             this.deleteB = new System.Windows.Forms.Button();
             this.cancelB = new System.Windows.Forms.Button();
             this.Addview = new System.Windows.Forms.DataGridView();
+            this.Back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Addview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,18 +147,29 @@
             // Addview
             // 
             this.Addview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Addview.Location = new System.Drawing.Point(348, 62);
+            this.Addview.Location = new System.Drawing.Point(292, 12);
             this.Addview.Name = "Addview";
-            this.Addview.Size = new System.Drawing.Size(324, 295);
+            this.Addview.Size = new System.Drawing.Size(384, 295);
             this.Addview.TabIndex = 4;
             this.Addview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Addview_CellContentClick);
             this.Addview.SelectionChanged += new System.EventHandler(this.Addview_SelectionChanged);
+            // 
+            // Back
+            // 
+            this.Back.Location = new System.Drawing.Point(551, 322);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(94, 32);
+            this.Back.TabIndex = 5;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
             // Add_Admin_User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 366);
+            this.Controls.Add(this.Back);
             this.Controls.Add(this.Addview);
             this.Controls.Add(this.cancelB);
             this.Controls.Add(this.deleteB);
@@ -193,5 +205,6 @@
         private System.Windows.Forms.Button deleteB;
         private System.Windows.Forms.Button cancelB;
         private System.Windows.Forms.DataGridView Addview;
+        private System.Windows.Forms.Button Back;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,10 +25,10 @@ namespace unicomtlc
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new ());
-             Application.Run(new LoginForm());
+            //Application.Run(new Add_Admin_User ());
+            // Application.Run(new StudentViewForm());
            
-            //Application.Run(new LoginForm());
+            Application.Run(new LoginForm());
 
         }
     }

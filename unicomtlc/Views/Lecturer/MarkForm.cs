@@ -28,7 +28,8 @@ namespace unicomtlc.Views
             InitializeComponent();
             LoadExamToComboBox();
             LoadStudents();
-            _previousForm = previousForm;
+            LoadMarks();
+            _previousForm = staffview;
         }
 
         public MarkForm(Lecturerview lecturerview)
@@ -40,8 +41,13 @@ namespace unicomtlc.Views
             _previousForm = lecturerview;
         }
 
-        public MarkForm()
+        public MarkForm(Form previousForm)
         {
+            InitializeComponent();
+            _previousForm = previousForm;
+            LoadExamToComboBox();
+            LoadStudents();
+            LoadMarks();
         }
 
         private void LoadExamToComboBox()
@@ -253,7 +259,8 @@ namespace unicomtlc.Views
 
         private void Back_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            _previousForm?.Show();
         }
 
         private void Markview_CellContentClick(object sender, DataGridViewCellEventArgs e)

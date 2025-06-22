@@ -71,8 +71,8 @@ namespace unicomtlc.Views
         private void StaffM_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Staff_Information  staff_Information = new Staff_Information();
-            staff_Information.ShowDialog();
+            Staff_Information staffInfoForm = new Staff_Information(this);
+            staffInfoForm.Show();
         }
 
         private void Exam_marksM_Click(object sender, EventArgs e)
@@ -85,23 +85,26 @@ namespace unicomtlc.Views
 
         private void TimetableM_Click(object sender, EventArgs e)
         {
-            
-            TimetableForm timetableForm = new TimetableForm();
-            timetableForm.ShowDialog();
+            this.Hide();
+            TimetableForm ttForm = new TimetableForm(this);
+            ttForm.Show();
         }
 
         private void LecturerM_Click(object sender, EventArgs e)
         {
-            
-            LecturerDetails lecturerDetails = new LecturerDetails();
-            lecturerDetails.ShowDialog();
+
+            this.Hide();
+            LecturerDetails lecturerForm = new LecturerDetails(this);
+            lecturerForm.Show();
+
         }
 
         private void AddM_Click(object sender, EventArgs e)
         {
-           
-            Add_Admin_User add_Admin_User = new Add_Admin_User();
-            add_Admin_User.ShowDialog();
+
+            this.Hide();
+            Add_Admin_User addUserForm = new Add_Admin_User(this);
+            addUserForm.Show();
         }
 
         private void Logout_Click(object sender, EventArgs e)
@@ -116,17 +119,26 @@ namespace unicomtlc.Views
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            SubjectForm subjectForm = new SubjectForm();
-            subjectForm.ShowDialog();
-
+            this.Hide();
+            SubjectForm subjectForm = new SubjectForm(this);
+            subjectForm.Show();
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
             this.Hide();  // Hide Adminview
-            MarkForm markForm = new MarkForm(this);  // pass current form as previousForm
+            MarkForm markForm = new MarkForm(this);  // Pass Adminview as previous form
             markForm.ShowDialog();
-            this.Show();
+            this.Show();  // Show Adminv
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
         }
     }
 }

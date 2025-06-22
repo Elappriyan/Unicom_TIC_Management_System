@@ -9,7 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using unicomtlc.Controllers;
 using unicomtlc.Data;
+using unicomtlc.Moddel;
 using unicomtlc.Views.admin;
 
 namespace unicomtlc.Views
@@ -43,50 +45,55 @@ namespace unicomtlc.Views
                             string role = reader["Role"].ToString();
                             string username = reader["UserName"].ToString();
 
-                            this.Hide(); // Hide login form
+                            this.Hide(); // Hide login form once for all roles
 
                             if (role == "Admin")
                             {
                                 Adminview adminForm = new Adminview(username, role, this);
+                                adminForm.FormClosed += (s, args) => this.Close();
                                 adminForm.Show();
-                                this.Hide();
                             }
                             else if (role == "Lecturer")
                             {
-                                // Student dashboard
-                                Lecturerview studentForm = new Lecturerview();
-                                studentForm.Show();
+                                TimetableController controller = new TimetableController();
+                                DataTable dt = controller.GetLecturersAsDataTable();
+
+
+                                Lecturerview lecturerForm = new Lecturerview(dt);
+                                lecturerForm.FormClosed += (s, args) => this.Close(); // Close LoginForm after Lecturerview is closed
+                                lecturerForm.Show();
                             }
                             else if (role == "Student")
                             {
-                                StudentViewForm staffForm = new StudentViewForm();
-                                staffForm.Show();
+                                // Optionally preload student data here if needed
+                                Students studentsForm = new Students(username, this); // pass actual username
+                                StudentViewForm viewForm = new StudentViewForm(studentsForm);
+                                viewForm.FormClosed += (s, args) => this.Close();
+                                viewForm.Show();
                             }
                             else if (role == "Staff")
                             {
-                                this.Hide();  // hide LoginForm
                                 Staffview staffForm = new Staffview();
-                                staffForm.FormClosed += (s, args) => this.Close();  // Close LoginForm when Staffview is closed
+                                staffForm.FormClosed += (s, args) => this.Close();
                                 staffForm.Show();
-
-
-
-
-
-
-
-
                             }
                             else
                             {
                                 MessageBox.Show("Invalid username or password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                this.Show();
                             }
-                            
                         }
-                    }
-
-                }
+                        else
+                        {
+                            MessageBox.Show("Invalid username or password", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+               }    }
             }
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -9,22 +9,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using unicomtlc.Views.Staff;
 
+
 namespace unicomtlc.Views
 {
     public partial class Staffview : Form
     {
-       
+        private Staff_Information _staffInfoForm;
+
 
         public Staffview()
         {
             InitializeComponent();
+            _staffInfoForm = new Staff_Information();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TimetableForm timetable = new TimetableForm(this); // Pass this
             this.Hide();
-            timetable.Show();
+            TimetableForm ttForm = new TimetableForm(this);
+            ttForm.Show();
         }
 
         private void Staffview_Load(object sender, EventArgs e)
@@ -34,14 +37,10 @@ namespace unicomtlc.Views
 
         private void mark_Click(object sender, EventArgs e)
         {
-            ExamForm ex = new ExamForm(this); // Pass this
-            this.Hide();
-            ex.Show();
 
-            MarkForm ma = new MarkForm(this);
             this.Hide();
+            MarkForm ma = new MarkForm(this);
             ma.Show();
-           
         }
 
         private void room_Click(object sender, EventArgs e)
@@ -52,8 +51,8 @@ namespace unicomtlc.Views
 
         private void Staff_Click(object sender, EventArgs e)
         {
-            Staff_Information staff_Information = new Staff_Information();
-            staff_Information.ShowDialog();
+            DataTable staffData = _staffInfoForm.GetStaffTable();
+            staview.DataSource = staffData;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -64,6 +63,13 @@ namespace unicomtlc.Views
 
 
             //this.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ExamForm ex = new ExamForm(this);
+            ex.ShowDialog();
         }
     }
 }

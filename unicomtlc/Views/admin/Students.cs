@@ -36,6 +36,32 @@ namespace unicomtlc.Views
         public Students()
         {
         }
+        public DataTable GetStudentTable()
+        {
+            var list = Studentview.DataSource as List<Student>;
+
+            if (list == null)
+                return new DataTable(); // or throw new Exception("Data not available");
+
+            return ConvertToDataTable(list);
+        }
+
+        private DataTable ConvertToDataTable(List<Student> list)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id", typeof(int));
+            dt.Columns.Add("Name", typeof(string));
+            dt.Columns.Add("Address", typeof(string));
+            dt.Columns.Add("Age", typeof(string));
+            dt.Columns.Add("CourseID", typeof(int));
+
+            foreach (var student in list)
+            {
+                dt.Rows.Add(student.Id, student.Name, student.Address, student.Age, student.CourseID);
+            }
+
+            return dt;
+        }
 
         private void LoadCourses()
         {

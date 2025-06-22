@@ -87,17 +87,16 @@ namespace unicomtlc.Views.admin
             if (couresview.SelectedRows.Count > 0)
             {
                 var row = couresview.SelectedRows[0];
-
-                if (row.Cells["ID"].Value != null && row.Cells["Name"].Value != null)
+                if (couresview.Columns.Contains("CourseID") && row.Cells["CourseID"].Value != null)
                 {
-                    selectedCoruesid = Convert.ToInt32(row.Cells["ID"].Value);
-                    name.Text = row.Cells["Name"].Value.ToString();
+                    selectedCoruesid = Convert.ToInt32(row.Cells["CourseID"].Value);
+                    name.Text = row.Cells["CourseName"].Value?.ToString();
                 }
             }
             else
             {
                 selectedCoruesid = -1;
-                ClearForm();
+                name.Clear();
             }
         }
 
@@ -122,7 +121,7 @@ namespace unicomtlc.Views.admin
 
         private void button1_Click_3(object sender, EventArgs e)
         {
-            this.Close();           // இப்போதுள்ள form மூடும்
+            this.Close();         
             _previousForm?.Show();
         }
 
