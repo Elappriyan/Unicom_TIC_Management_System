@@ -25,7 +25,6 @@ namespace unicomtlc.Views
         {
             InitializeComponent();
             _previousForm = adminview;
-            UsersController usersController = new UsersController();
             LoadRoles();
             LoadUsers();
 
@@ -63,66 +62,111 @@ namespace unicomtlc.Views
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            if (selectedUserId == -1)
+            try
             {
-                MessageBox.Show("Please select a user to delete.");
-                return;
-            }
+                if (selectedUserId == -1)
+                {
+                    MessageBox.Show("Please select a user to delete.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            usersController.DeleteUser(selectedUserId);
-            MessageBox.Show("User deleted.");
-            LoadUsers();
-            ClearForm();
+                var confirm = MessageBox.Show("Are you sure you want to delete this user?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm == DialogResult.Yes)
+                {
+                    usersController.DeleteUser(selectedUserId);
+                    MessageBox.Show("User deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadUsers();
+                    ClearForm();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting user: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            if (selectedUserId == -1)
+            try
             {
-                MessageBox.Show("Please select a user to update.");
-                return;
+                if (selectedUserId == -1)
+                {
+                    MessageBox.Show("Please select a user to update.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(name.Text) ||
+                    string.IsNullOrWhiteSpace(password.Text) ||
+                    roleM.SelectedItem == null)
+                {
+                    MessageBox.Show("Please enter all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password.Text.Trim());
+
+                Users user = new Users
+                {
+                    UserID = selectedUserId,
+                    UserName = name.Text.Trim(),
+                    Password = hashedPassword,
+                    Role = roleM.SelectedItem.ToString()
+                };
+
+                usersController.UpdateUser(user);
+                MessageBox.Show("User updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadUsers();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating user: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            Users user = new Users
-            {
-                UserID = selectedUserId,
-                UserName = name.Text,
-                Password = password.Text,
-                Role = roleM.SelectedItem.ToString()
-            };
 
-            usersController.UpdateUser(user);
-            MessageBox.Show("User updated.");
-            LoadUsers();
-            ClearForm();
-
-           
         }
-        
+        private void ValidateInputs()
+        {
+            if (string.IsNullOrWhiteSpace(name.Text))
+                throw new ArgumentException("Name cannot be empty.");
+
+            if (string.IsNullOrWhiteSpace(password.Text))
+                throw new ArgumentException("Password cannot be empty.");
+
+            if (roleM.SelectedItem == null)
+                throw new ArgumentException("Please select a role.");
+        }
+
         private void Button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(name.Text) ||
-                string.IsNullOrWhiteSpace(password.Text) ||
-                 roleM.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Please enter all fields.");
-                return;
+                ValidateInputs();
+
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password.Text.Trim());
+
+                Users user = new Users
+                {
+                    UserName = name.Text.Trim(),
+                    Password = hashedPassword,
+                    Role = roleM.SelectedItem.ToString()
+                };
+
+                usersController.Adduser(user);
+
+                MessageBox.Show("User added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadUsers();
+                ClearForm();
             }
-
-           
-            Users user = new Users
+            catch (ArgumentException ex)
             {
-                UserName = name.Text,
-                Password = password.Text,
-                Role = roleM.SelectedItem.ToString()
-            };
-
-            
-            usersController.Adduser(user);
-
-            MessageBox.Show("User added successfully.");
-            LoadUsers();
-            ClearForm();
+                // Validation error message shown here
+                MessageBox.Show(ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding user: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
@@ -137,6 +181,15 @@ namespace unicomtlc.Views
         private void Add_Admin_User_Load(object sender, EventArgs e)
         {
 
+        }
+        private void ShowError(string message, Exception ex = null)
+        {
+            var fullMessage = message;
+            if (ex != null)
+            {
+                fullMessage += "\nDetails: " + ex.Message;
+            }
+            MessageBox.Show(fullMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void Addview_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -158,16 +211,28 @@ namespace unicomtlc.Views
 
         private void Addview_SelectionChanged(object sender, EventArgs e)
         {
-            if (Addview.SelectedRows.Count > 0)
+            try
             {
-                var row = Addview.SelectedRows[0];
+                if (Addview.SelectedRows.Count > 0)
+                {
+                    var row = Addview.SelectedRows[0];
 
-                selectedUserId = Convert.ToInt32(row.Cells["UserID"].Value);
-                name.Text = row.Cells["UserName"].Value.ToString();
-                password.Text = row.Cells["Password"].Value.ToString();
-                roleM.SelectedItem = row.Cells["Role"].Value.ToString();
+                    if (row.Cells["UserID"].Value == null || !int.TryParse(row.Cells["UserID"].Value.ToString(), out selectedUserId))
+                    {
+                        selectedUserId = -1;
+                        ClearForm();
+                        return;
+                    }
+
+                    name.Text = row.Cells["UserName"].Value?.ToString() ?? "";
+                    password.Clear(); // never show hashed password
+                    roleM.SelectedItem = row.Cells["Role"].Value?.ToString() ?? null;
+                }
             }
-
+            catch (Exception ex)
+            {
+                ShowError("Error loading selected user", ex);
+            }
         }
 
         private void Back_Click(object sender, EventArgs e)

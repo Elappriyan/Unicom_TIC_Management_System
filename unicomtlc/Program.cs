@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using unicomtlc.Data;
 using unicomtlc.Moddel;
+using unicomtlc.Password;
 using unicomtlc.Views;
 using unicomtlc.Views.admin;
 using unicomtlc.Views.CourseMang;
@@ -21,6 +24,7 @@ namespace unicomtlc
         [STAThread]
         static void Main()
         {
+            PasswordHelper.UpdateUserPassword("Admin", "Admin123");
             Databasemange.creatTable();
 
             Application.EnableVisualStyles();

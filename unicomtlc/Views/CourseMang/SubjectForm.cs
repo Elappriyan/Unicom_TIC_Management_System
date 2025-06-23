@@ -47,14 +47,13 @@ namespace unicomtlc.Views.CourseMang
             couresbox.DataSource = courseController.GetAllCourses(); 
             couresbox.DisplayMember = "CourseName"; 
             couresbox.ValueMember = "CourseID";
-            //couresbox.selectedIndex = -1;
+            
         }
         private void add_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(name.Text) || couresbox.SelectedIndex == -1)
             {
-                MessageBox.Show("Please fill in all fields.");
+                MessageBox.Show("Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -64,8 +63,17 @@ namespace unicomtlc.Views.CourseMang
                 Coursename = couresbox.SelectedValue?.ToString()
             };
 
-            controller.AddSubject(subject);
-            LoadSubjects();
+            try
+            {
+                controller.AddSubject(subject);
+                MessageBox.Show("Subject added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadSubjects();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to add subject.\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void delete_Click(object sender, EventArgs e)
@@ -120,7 +128,7 @@ namespace unicomtlc.Views.CourseMang
                 if (SubjectView.Columns.Contains("Name"))
                     subjectName = selectedRow.Cells["Name"].Value?.ToString() ?? "";
 
-                // Try a few likely column names for course id, e.g. "CourseID", "Coursename", or check your datasource for exact column name
+            
                 if (SubjectView.Columns.Contains("CourseID"))
                     courseIdValue = selectedRow.Cells["CourseID"].Value;
                 else if (SubjectView.Columns.Contains("Coursename"))
@@ -145,6 +153,12 @@ namespace unicomtlc.Views.CourseMang
                 name.Clear();
                 couresbox.SelectedIndex = -1;
             }
+        }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            name.Clear();             
+            couresbox.SelectedIndex = -1;
         }
     }
     

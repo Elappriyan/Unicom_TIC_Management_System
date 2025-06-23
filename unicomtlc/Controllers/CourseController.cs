@@ -13,14 +13,26 @@ namespace unicomtlc.Controllers
     {
         public void AddCourse(Course course)
         {
-            using (var con = DB.GetConnection())
+            try
             {
-                var command  = new SQLiteCommand ("INSERT INTO Course(CourseName) VALUES(@name)", con);
-                command.Parameters.AddWithValue("@name", course.CourseName);
-                command.ExecuteNonQuery ();
+                using (var con = DB.GetConnection())
+                {
+                    var command = new SQLiteCommand("INSERT INTO Course(CourseName) VALUES(@name)", con);
+                    command.Parameters.AddWithValue("@name", course.CourseName);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SQLiteException ex)
+            {
+               
+                Console.Error.WriteLine($"Database error inserting course: {ex.Message}");
                 
-
-
+            }
+            catch (Exception ex)
+            {
+               
+                Console.Error.WriteLine($"Unexpected error inserting course: {ex.Message}");
+                
             }
         }
 
@@ -60,15 +72,35 @@ namespace unicomtlc.Controllers
 
         public void UpdateCourse(Course course)
         {
-            using (var conn = DB.GetConnection())
+            try
             {
-             
-                var cmd = conn.CreateCommand();
-                cmd.CommandText = "UPDATE Course SET CourseName = @CourseName WHERE CourseID = @id";
-                cmd.Parameters.AddWithValue("@CourseName", course.CourseName);
-                cmd.Parameters.AddWithValue("@id", course.CourseID);
-                cmd.ExecuteNonQuery(); 
+                using (var conn = DB.GetConnection())
+                {
+                    var cmd = conn.CreateCommand();
+                    cmd.CommandText = "UPDATE Course SET CourseName = @CourseName WHERE CourseID = @id";
+                    cmd.Parameters.AddWithValue("@CourseName", course.CourseName);
+                    cmd.Parameters.AddWithValue("@id", course.CourseID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        Console.WriteLine("No course found with the specified ID.");
+                       
+                    }
+                }
             }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error updating course: {ex.Message}");
+                
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error updating course: {ex.Message}");
+                
+            }
+
         }
 
         public void DeleteCoures(int id)

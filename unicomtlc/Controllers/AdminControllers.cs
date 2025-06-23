@@ -31,36 +31,37 @@ namespace unicomtlc.Controllers
             List<AdminDetail> admins = new List<AdminDetail>();
             string getAdminQuery = "SELECT * FROM Admin";
 
-            using (var con = DB.GetConnection())
+            try
             {
-
-
-                using (SQLiteCommand getCommand = new SQLiteCommand(getAdminQuery, con))
+                using (var con = DB.GetConnection())
+                using (var getCommand = new SQLiteCommand(getAdminQuery, con))
                 using (var reader = getCommand.ExecuteReader())
                 {
-
                     while (reader.Read())
                     {
                         AdminDetail admin = new AdminDetail
                         {
-                            
-                            adminID = !reader.IsDBNull(0) ? Convert.ToInt32(reader.GetValue(0)) : 0,
-
-                            
+                            adminID = !reader.IsDBNull(0) ? reader.GetInt32(0) : 0,
                             adminName = !reader.IsDBNull(1) ? reader.GetString(1) : null,
-
-                            
                             adminPNumber = !reader.IsDBNull(2) ? reader.GetString(2) : null
                         };
 
                         admins.Add(admin);
                     }
-
-
                 }
-                return admins;
-
             }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error getting admins: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error getting admins: {ex.Message}");
+                throw;
+            }
+
+            return admins;
         }
 
         public void UpdateAdmin(AdminDetail admin)

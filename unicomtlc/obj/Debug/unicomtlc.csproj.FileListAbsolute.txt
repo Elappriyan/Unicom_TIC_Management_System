@@ -26,3 +26,13 @@ Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.csproj.CoreCompileInputs.cache
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.csproj.Up2Date
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.exe
 Z:\C#\unicomtlc\unicomtlc\obj\Debug\unicomtlc.pdb
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\BCrypt.Net-Next.dll
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\System.Buffers.dll
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\System.Memory.dll
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\System.Numerics.Vectors.dll
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\BCrypt.Net-Next.xml
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\System.Buffers.xml
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\System.Memory.xml
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\System.Numerics.Vectors.xml
+Z:\C#\unicomtlc\unicomtlc\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

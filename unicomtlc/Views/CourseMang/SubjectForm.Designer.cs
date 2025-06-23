@@ -84,6 +84,7 @@
             this.clear.TabIndex = 2;
             this.clear.Text = "Clear";
             this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
             // add
             // 

@@ -16,18 +16,31 @@ namespace unicomtlc.Controllers
     {
         public void Adduser(Users users)
         {
-            using (var conn = DB.GetConnection())
+            try
             {
-               
-                string query = "INSERT INTO Users (UserName, Password, Role) VALUES (@u, @p, @r)";
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var conn = DB.GetConnection())
                 {
-                    cmd.Parameters.AddWithValue("@u", users.UserName);
-                    cmd.Parameters.AddWithValue("@p", users.Password);
-                    cmd.Parameters.AddWithValue("@r", users.Role);
-                    cmd.ExecuteNonQuery();
+                    string query = "INSERT INTO Users (UserName, Password, Role) VALUES (@u, @p, @r)";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@u", users.UserName);
+                        cmd.Parameters.AddWithValue("@p", users.Password);
+                        cmd.Parameters.AddWithValue("@r", users.Role);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error inserting user: {ex.Message}");
+               
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error inserting user: {ex.Message}");
+                
+            }
+
 
         }
         public DataTable GetAllUsers()
@@ -38,7 +51,6 @@ namespace unicomtlc.Controllers
             {
                 using (var conn = DB.GetConnection())
                 {
-                    
                     string query = "SELECT * FROM Users";
                     using (var da = new SQLiteDataAdapter(query, conn))
                     {
@@ -46,8 +58,14 @@ namespace unicomtlc.Controllers
                     }
                 }
             }
-            catch
+            catch (SQLiteException ex)
             {
+                Console.Error.WriteLine($"SQLite error loading users: {ex.Message}");
+                
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error loading users: {ex.Message}");
                 
             }
 
@@ -55,32 +73,58 @@ namespace unicomtlc.Controllers
         }
         public void UpdateUser(Users user)
         {
-            using (var conn = DB.GetConnection())
+            try
             {
-                
-                string query = "UPDATE Users SET UserName=@u, Password=@p, Role=@r WHERE UserID=@id";
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var conn = DB.GetConnection())
                 {
-                    cmd.Parameters.AddWithValue("@u", user.UserName);
-                    cmd.Parameters.AddWithValue("@p", user.Password);
-                    cmd.Parameters.AddWithValue("@r", user.Role);
-                    cmd.Parameters.AddWithValue("@id", user.UserID);
-                    cmd.ExecuteNonQuery();
+                    string query = "UPDATE Users SET UserName=@u, Password=@p, Role=@r WHERE UserID=@id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@u", user.UserName);
+                        cmd.Parameters.AddWithValue("@p", user.Password);
+                        cmd.Parameters.AddWithValue("@r", user.Role);
+                        cmd.Parameters.AddWithValue("@id", user.UserID);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error updating user: {ex.Message}");
+                
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error updating user: {ex.Message}");
+                
+            }
+
         }
         public void DeleteUser(int userId)
         {
-            using (var conn = DB.GetConnection())
+            try
             {
-                
-                string query = "DELETE FROM Users WHERE UserID=@id";
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var conn = DB.GetConnection())
                 {
-                    cmd.Parameters.AddWithValue("@id", userId);
-                    cmd.ExecuteNonQuery();
+                    string query = "DELETE FROM Users WHERE UserID=@id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", userId);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error deleting user: {ex.Message}");
+                
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error deleting user: {ex.Message}");
+              
+            }
+
         }
 
 

@@ -11,8 +11,8 @@ namespace unicomtlc.Moddel
     internal class Mark
     {
         public int MarkID { get; set; }
-        public int StudentID { get; set; }  // Add this
-        public int ExamID { get; set; }     // Add this
+        public int StudentID { get; set; }  // FK
+        public int ExamID { get; set; }     // FK
 
         public double Score { get; set; }
         public string StudentName { get; set; }

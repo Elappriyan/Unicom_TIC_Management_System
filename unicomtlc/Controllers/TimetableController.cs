@@ -18,25 +18,38 @@ namespace unicomtlc.Controllers
         {
             var lecturers = new List<Lecturer>();
 
-            using (var conn = DB.GetConnection())
+            try
             {
-                string query = "SELECT * FROM Lecturers";
-
-                using (var cmd = new SQLiteCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var conn = DB.GetConnection())
                 {
-                    while (reader.Read())
+                    string query = "SELECT * FROM Lecturers";
+
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        lecturers.Add(new Lecturer
+                        while (reader.Read())
                         {
-                            ID = reader.GetInt32(0),
-                            FullName = reader.GetString(1),
-                            Email = reader.GetString(2),
-                            PhoneNumber = reader.GetString(3),
-                            Department = reader.GetString(4)
-                        });
+                            lecturers.Add(new Lecturer
+                            {
+                                ID = reader.GetInt32(0),
+                                FullName = reader.GetString(1),
+                                Email = reader.GetString(2),
+                                PhoneNumber = reader.GetString(3),
+                                Department = reader.GetString(4)
+                            });
+                        }
                     }
                 }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error loading lecturers: {ex.Message}");
+                // Optionally: handle or rethrow
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error loading lecturers: {ex.Message}");
+                // Optionally: handle or rethrow
             }
 
             return lecturers;
@@ -47,22 +60,35 @@ namespace unicomtlc.Controllers
         {
             var subjects = new List<Subject>();
 
-            using (var conn = DB.GetConnection())
+            try
             {
-                string query = "SELECT SubjectID, SubjectName FROM Subject"; 
-
-                using (var cmd = new SQLiteCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var conn = DB.GetConnection())
                 {
-                    while (reader.Read())
+                    string query = "SELECT SubjectID, SubjectName FROM Subject";
+
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        subjects.Add(new Subject
+                        while (reader.Read())
                         {
-                            ID = reader.GetInt32(0),
-                            Name = reader.GetString(1)
-                        });
+                            subjects.Add(new Subject
+                            {
+                                ID = reader.GetInt32(0),
+                                Name = reader.GetString(1)
+                            });
+                        }
                     }
                 }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error loading subjects: {ex.Message}");
+                
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error loading subjects: {ex.Message}");
+               
             }
 
             return subjects;
@@ -89,70 +115,109 @@ namespace unicomtlc.Controllers
         {
             var rooms = new List<Room>();
 
-            using (var conn = DB.GetConnection())
+            try
             {
-                string query = "SELECT RoomID, RoomName FROM Rooms";  
-
-                using (var cmd = new SQLiteCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var conn = DB.GetConnection())
                 {
-                    while (reader.Read())
+                    string query = "SELECT RoomID, RoomName FROM Rooms";
+
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        rooms.Add(new Room
+                        while (reader.Read())
                         {
-                            RoomID = reader.GetInt32(0),
-                            RoomName = reader.GetString(1)
-                        });
+                            rooms.Add(new Room
+                            {
+                                RoomID = reader.GetInt32(0),
+                                RoomName = reader.GetString(1)
+                            });
+                        }
                     }
                 }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error loading rooms: {ex.Message}");
+                // Optionally handle or rethrow
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error loading rooms: {ex.Message}");
+                // Optionally handle or rethrow
             }
 
             return rooms;
         }
         public void AddTimeTable(TimeTable tt)
         {
-            using (var conn = DB.GetConnection())
+            try
             {
-               
-
-                using (var cmd = new SQLiteCommand(conn))
+                using (var conn = DB.GetConnection())
                 {
-                    cmd.CommandText = "INSERT INTO TimeTable (Lecturer, Subject, Day, Time, Room) VALUES (@Lecturer, @Subject, @Day, @Time, @Room)";
-                    cmd.Parameters.AddWithValue("@Lecturer", tt.Lecturer);
-                    cmd.Parameters.AddWithValue("@Subject", tt.Subject);
-                    cmd.Parameters.AddWithValue("@Day", tt.Day);
-                    cmd.Parameters.AddWithValue("@Time", tt.Time);
-                    cmd.Parameters.AddWithValue("@Room", tt.Room);
+                    using (var cmd = new SQLiteCommand())
+                    {
+                        cmd.Connection = conn;  // Set connection explicitly
+                        cmd.CommandText = "INSERT INTO TimeTable (Lecturer, Subject, Day, Time, Room) VALUES (@Lecturer, @Subject, @Day, @Time, @Room)";
+                        cmd.Parameters.AddWithValue("@Lecturer", tt.Lecturer);
+                        cmd.Parameters.AddWithValue("@Subject", tt.Subject);
+                        cmd.Parameters.AddWithValue("@Day", tt.Day);
+                        cmd.Parameters.AddWithValue("@Time", tt.Time);
+                        cmd.Parameters.AddWithValue("@Room", tt.Room);
 
-                    cmd.ExecuteNonQuery(); // do not keep connection open unnecessarily
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error inserting timetable: {ex.Message}");
+              
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error inserting timetable: {ex.Message}");
+                
+            }
+
         }
 
         public List<TimeTable> GetAllTimeTables()
         {
             var list = new List<TimeTable>();
 
-            using (var conn = DB.GetConnection())
+            try
             {
-                string query = "SELECT Id, Lecturer, Subject, Day, Time, Room FROM TimeTable";
-
-                using (var cmd = new SQLiteCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var conn = DB.GetConnection())
                 {
-                    while (reader.Read())
+                    string query = "SELECT Id, Lecturer, Subject, Day, Time, Room FROM TimeTable";
+
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        list.Add(new TimeTable
+                        while (reader.Read())
                         {
-                            Id = reader.GetInt32(0),
-                            Lecturer = reader.GetString(1),
-                            Subject = reader.GetString(2),
-                            Day = reader.GetString(3),
-                            Time = reader.GetString(4),
-                            Room = reader.GetString(5),
-                        });
+                            list.Add(new TimeTable
+                            {
+                                Id = reader.GetInt32(0),
+                                Lecturer = reader.GetString(1),
+                                Subject = reader.GetString(2),
+                                Day = reader.GetString(3),
+                                Time = reader.GetString(4),
+                                Room = reader.GetString(5),
+                            });
+                        }
                     }
                 }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error retrieving timetable: {ex.Message}");
+                // Optionally handle or rethrow
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error retrieving timetable: {ex.Message}");
+                // Optionally handle or rethrow
             }
 
             return list;
@@ -160,36 +225,60 @@ namespace unicomtlc.Controllers
 
         public void UpdateTimeTable(TimeTable tt)
         {
-            using (var conn = DB.GetConnection())
+            try
             {
-                string query = @"UPDATE TimeTable 
-                                 SET Lecturer = @lecturer, Subject = @subject, Day = @day, Time = @time, Room = @room
-                                 WHERE Id = @id";
-
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var conn = DB.GetConnection())
                 {
-                    cmd.Parameters.AddWithValue("@lecturer", tt.Lecturer);
-                    cmd.Parameters.AddWithValue("@subject", tt.Subject);
-                    cmd.Parameters.AddWithValue("@day", tt.Day);
-                    cmd.Parameters.AddWithValue("@time", tt.Time);
-                    cmd.Parameters.AddWithValue("@room", tt.Room);
-                    cmd.Parameters.AddWithValue("@id", tt.Id);
+                    string query = @"UPDATE TimeTable 
+                         SET Lecturer = @lecturer, Subject = @subject, Day = @day, Time = @time, Room = @room
+                         WHERE Id = @id";
 
-                    cmd.ExecuteNonQuery();
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@lecturer", tt.Lecturer);
+                        cmd.Parameters.AddWithValue("@subject", tt.Subject);
+                        cmd.Parameters.AddWithValue("@day", tt.Day);
+                        cmd.Parameters.AddWithValue("@time", tt.Time);
+                        cmd.Parameters.AddWithValue("@room", tt.Room);
+                        cmd.Parameters.AddWithValue("@id", tt.Id);
+
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error updating timetable: {ex.Message}");
+                // Optionally rethrow or handle further
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error updating timetable: {ex.Message}");
             }
         }
 
         public void DeleteTimeTable(int Id)
         {
-            using (var conn = DB.GetConnection())
+            try
             {
-                string query = "DELETE FROM TimeTable WHERE Id = @id";
-                using (var cmd = new SQLiteCommand(query, conn))
+                using (var conn = DB.GetConnection())
                 {
-                    cmd.Parameters.AddWithValue("@id", Id);
-                    cmd.ExecuteNonQuery();
+                    string query = "DELETE FROM TimeTable WHERE Id = @id";
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", Id);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error deleting timetable entry: {ex.Message}");
+                // Handle or rethrow as needed
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error deleting timetable entry: {ex.Message}");
             }
         }
     }

@@ -18,48 +18,75 @@ namespace unicomtlc.Controllers
 
         public void AddExam(Exam exam)
         {
-            using (var con = DB.GetConnection())
+            try
             {
-                string addExamQuery = "INSERT INTO Exams(ExamName, ExamDate, SubjectId) VALUES(@name, @date, @subjectId)";
-                using (var insertCmd = new SQLiteCommand(addExamQuery, con))
+                using (var con = DB.GetConnection())
                 {
-                    insertCmd.Parameters.AddWithValue("@name", exam.ExamName);
-                    insertCmd.Parameters.AddWithValue("@date", exam.ExamDate);
-                    insertCmd.Parameters.AddWithValue("@subjectId", exam.SubjectID);
-                    insertCmd.ExecuteNonQuery();
+                    string addExamQuery = "INSERT INTO Exams(ExamName, ExamDate, SubjectId) VALUES(@name, @date, @subjectId)";
+                    using (var insertCmd = new SQLiteCommand(addExamQuery, con))
+                    {
+                        insertCmd.Parameters.AddWithValue("@name", exam.ExamName);
+                        insertCmd.Parameters.AddWithValue("@date", exam.ExamDate);
+                        insertCmd.Parameters.AddWithValue("@subjectId", exam.SubjectID);
+                        insertCmd.ExecuteNonQuery();
+                    }
                 }
             }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"SQLite error inserting exam: {ex.Message}");
+                // Handle or rethrow as needed
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error inserting exam: {ex.Message}");
+                // Handle or rethrow as needed
+            }
+
         }
         public List<Exam> GetAllExam()
         {
             var exams = new List<Exam>();
 
-            using (var conn = DB.GetConnection())
+            try
             {
-               string query = @"
-                                SELECT e.ExamID, e.ExamName, e.SubjectId, e.ExamDate, s.SubjectName
-                                FROM Exams e
-                                LEFT JOIN Subject s ON e.SubjectId = s.SubjectID";
-
-
-                using (var cmd = new SQLiteCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
+                using (var conn = DB.GetConnection())
                 {
-                    while (reader.Read())
+                    string query = @"
+            SELECT e.ExamID, e.ExamName, e.SubjectId, e.ExamDate, s.SubjectName
+            FROM Exams e
+            LEFT JOIN Subject s ON e.SubjectId = s.SubjectID";
+
+                    using (var cmd = new SQLiteCommand(query, conn))
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        exams.Add(new Exam
+                        while (reader.Read())
                         {
-                            ExamID = reader.GetInt32(0),
-                            ExamName = reader.GetString(1),
-                            SubjectID = reader.GetInt32(2),
-                            ExamDate = reader.GetString(3),
-                            SubjectName = !reader.IsDBNull(4) ? reader.GetString(4) : null
-                        });
+                            exams.Add(new Exam
+                            {
+                                ExamID = reader.GetInt32(0),
+                                ExamName = reader.GetString(1),
+                                SubjectID = reader.GetInt32(2),
+                                ExamDate = reader.GetString(3),
+                                SubjectName = !reader.IsDBNull(4) ? reader.GetString(4) : null
+                            });
+                        }
                     }
                 }
             }
+            catch (SQLiteException ex)
+            {
+                Console.Error.WriteLine($"Database error fetching exams: {ex.Message}");
+                // Optionally handle or rethrow exception
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Unexpected error fetching exams: {ex.Message}");
+                // Optionally handle or rethrow exception
+            }
 
             return exams;
+
         }
         public void UpdateExam(Exam exam)
         {

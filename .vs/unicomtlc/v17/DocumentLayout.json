@@ -3,42 +3,6 @@
   "WorkspaceRootPath": "Z:\\C#\\unicomtlc\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|z:\\c#\\unicomtlc\\unicomtlc\\views\\lecturerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\views\\lecturerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|z:\\c#\\unicomtlc\\unicomtlc\\views\\admin\\lecturerdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\views\\admin\\lecturerdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|z:\\c#\\unicomtlc\\unicomtlc\\views\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\views\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|z:\\c#\\unicomtlc\\unicomtlc\\controllers\\timetablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\controllers\\timetablecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|z:\\c#\\unicomtlc\\unicomtlc\\views\\staffview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\views\\staffview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|z:\\c#\\unicomtlc\\unicomtlc\\views\\staffview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\views\\staffview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|z:\\c#\\unicomtlc\\unicomtlc\\views\\lecturerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\views\\lecturerview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|z:\\c#\\unicomtlc\\unicomtlc\\views\\lecturer\\markform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\views\\lecturer\\markform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|z:\\c#\\unicomtlc\\unicomtlc\\views\\admin\\lecturerdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\views\\admin\\lecturerdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|Z:\\C#\\unicomtlc\\unicomtlc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AB1D1C07-60AD-47FA-85EF-06582F702502}|unicomtlc\\unicomtlc.csproj|solutionrelative:unicomtlc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -50,135 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Program.cs",
               "RelativeDocumentMoniker": "unicomtlc\\Program.cs",
               "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Program.cs",
               "RelativeToolTip": "unicomtlc\\Program.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAQwBsAAAAOAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAewBsAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-20T10:19:12.777Z",
               "IsPinned": true,
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Staffview.cs",
-              "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Staffview.cs",
-              "RelativeDocumentMoniker": "unicomtlc\\Views\\Staffview.cs",
-              "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Staffview.cs",
-              "RelativeToolTip": "unicomtlc\\Views\\Staffview.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAowDYAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T11:05:59.31Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Staffview.cs [Design]",
-              "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Staffview.cs",
-              "RelativeDocumentMoniker": "unicomtlc\\Views\\Staffview.cs",
-              "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Staffview.cs [Design]",
-              "RelativeToolTip": "unicomtlc\\Views\\Staffview.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T11:05:57.844Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MarkForm.cs",
-              "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Lecturer\\MarkForm.cs",
-              "RelativeDocumentMoniker": "unicomtlc\\Views\\Lecturer\\MarkForm.cs",
-              "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Lecturer\\MarkForm.cs",
-              "RelativeToolTip": "unicomtlc\\Views\\Lecturer\\MarkForm.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAowBYAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T10:43:33.727Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TimetableController.cs",
-              "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Controllers\\TimetableController.cs",
-              "RelativeDocumentMoniker": "unicomtlc\\Controllers\\TimetableController.cs",
-              "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Controllers\\TimetableController.cs",
-              "RelativeToolTip": "unicomtlc\\Controllers\\TimetableController.cs",
-              "ViewState": "AQIAAIwAAAAAAAAAAAAAAMEAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T10:39:41.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoginForm.cs",
-              "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\LoginForm.cs",
-              "RelativeDocumentMoniker": "unicomtlc\\Views\\LoginForm.cs",
-              "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\LoginForm.cs",
-              "RelativeToolTip": "unicomtlc\\Views\\LoginForm.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAcwDoAAABUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T10:36:37.901Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LecturerDetails.cs",
-              "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\admin\\LecturerDetails.cs",
-              "RelativeDocumentMoniker": "unicomtlc\\Views\\admin\\LecturerDetails.cs",
-              "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\admin\\LecturerDetails.cs",
-              "RelativeToolTip": "unicomtlc\\Views\\admin\\LecturerDetails.cs",
-              "ViewState": "AQIAAJQAAAAAAAAAAAAgwMQAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T09:58:07.399Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Lecturerview.cs",
-              "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Lecturerview.cs",
-              "RelativeDocumentMoniker": "unicomtlc\\Views\\Lecturerview.cs",
-              "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Lecturerview.cs",
-              "RelativeToolTip": "unicomtlc\\Views\\Lecturerview.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAAAgwE4AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T09:57:53.881Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Lecturerview.cs [Design]",
-              "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Lecturerview.cs",
-              "RelativeDocumentMoniker": "unicomtlc\\Views\\Lecturerview.cs",
-              "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\Lecturerview.cs [Design]",
-              "RelativeToolTip": "unicomtlc\\Views\\Lecturerview.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T09:56:25.912Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "LecturerDetails.cs [Design]",
-              "DocumentMoniker": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\admin\\LecturerDetails.cs",
-              "RelativeDocumentMoniker": "unicomtlc\\Views\\admin\\LecturerDetails.cs",
-              "ToolTip": "Z:\\C#\\unicomtlc\\unicomtlc\\Views\\admin\\LecturerDetails.cs [Design]",
-              "RelativeToolTip": "unicomtlc\\Views\\admin\\LecturerDetails.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-22T09:56:19.549Z",
-              "EditorCaption": " [Design]"
             }
           ]
         }

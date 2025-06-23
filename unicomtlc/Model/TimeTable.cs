@@ -17,5 +17,7 @@ namespace unicomtlc.Moddel
         public string Day { get; set; }
         public string Time { get; set; }
         public string Room { get; set; }
+        public int RoomId { get; set; } //fk
+        public int ID { get; set; } // fk
     }
 }

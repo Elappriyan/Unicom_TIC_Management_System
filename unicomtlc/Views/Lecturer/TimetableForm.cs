@@ -63,6 +63,12 @@ namespace unicomtlc.Views
         {
             InitializeComponent();
             this._previousForm = staffview;
+            LoadLecturers();
+            LoadSubjects();
+            LoadRooms();
+            LoadDays();
+            LoadTimes();
+            LoadTimeTables();
         }
 
         public TimetableForm()

@@ -44,15 +44,24 @@ namespace unicomtlc.Views.admin
 
         private void Add_Click(object sender, EventArgs e)
         {
-            Course course = new Course
+            try
             {
-                CourseName = name.Text
-            };
+                Course course = new Course
+                {
+                    CourseName = name.Text
+                };
 
-            courseController.AddCourse(course);
-            MessageBox.Show("Course added successfully.");
+                courseController.AddCourse(course);
+                MessageBox.Show("Course added successfully.");
 
-            Loadcourse();
+                Loadcourse();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding course: {ex.Message}");
+            }
+
+
 
         }
         private void ClearForm()
@@ -70,31 +79,64 @@ namespace unicomtlc.Views.admin
                 return;
             }
 
-            Course updatedCourse = new Course
+            if (string.IsNullOrWhiteSpace(name.Text))
             {
-                CourseID = selectedCoruesid,
-                CourseName = name.Text
-            };
+                MessageBox.Show("Course name cannot be empty.");
+                return;
+            }
 
-            courseController.UpdateCourse(updatedCourse);
-            MessageBox.Show("Course updated successfully.");
-            Loadcourse();
-           
+            try
+            {
+                Course updatedCourse = new Course
+                {
+                    CourseID = selectedCoruesid,
+                    CourseName = name.Text.Trim()
+                };
+
+                courseController.UpdateCourse(updatedCourse); 
+                MessageBox.Show("Course added successfully.");
+
+                Loadcourse();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating course: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void Couresview_SelectionChanged(object sender, EventArgs e)
         {
-            if (couresview.SelectedRows.Count > 0)
+            try
             {
-                var row = couresview.SelectedRows[0];
-                if (couresview.Columns.Contains("CourseID") && row.Cells["CourseID"].Value != null)
+                if (couresview.SelectedRows.Count > 0)
                 {
-                    selectedCoruesid = Convert.ToInt32(row.Cells["CourseID"].Value);
-                    name.Text = row.Cells["CourseName"].Value?.ToString();
+                    var row = couresview.SelectedRows[0];
+
+                    if (row.Cells["CourseID"].Value != null &&
+                        int.TryParse(row.Cells["CourseID"].Value.ToString(), out int courseId))
+                    {
+                        selectedCoruesid = courseId;
+
+                        object courseNameValue = row.Cells["CourseName"].Value;
+                        name.Text = courseNameValue != null ? courseNameValue.ToString() : string.Empty;
+                    }
+                    else
+                    {
+                        selectedCoruesid = -1;
+                        name.Clear();
+                    }
+                }
+                else
+                {
+                    selectedCoruesid = -1;
+                    name.Clear();
                 }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show($"Error loading selected course: {ex.Message}", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 selectedCoruesid = -1;
                 name.Clear();
             }
@@ -108,15 +150,24 @@ namespace unicomtlc.Views.admin
                 return;
             }
 
-            var confirm = MessageBox.Show("Are you sure you want to delete this course?", "Confirm Delete", MessageBoxButtons.YesNo);
+            var confirm = MessageBox.Show("Are you sure you want to delete this course?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
-                courseController.DeleteCoures(selectedCoruesid);
-                MessageBox.Show("Course deleted successfully.");
-                Loadcourse();
-                ClearForm();
-                selectedCoruesid = -1;
+                try
+                {
+                   courseController.DeleteCoures(selectedCoruesid); // <- updated method returning string
+                    MessageBox.Show("Course deleted successfully");
+
+                    Loadcourse();
+                    ClearForm();
+                    selectedCoruesid = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error deleting course: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
         }
 
         private void button1_Click_3(object sender, EventArgs e)
