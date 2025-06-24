@@ -79,6 +79,7 @@ namespace unicomtlc.Views.admin
 
         }
 
+
         private void Button2_Click(object sender, EventArgs e)
         {
            var timeTables = _timetableController.GetAllTimeTables();
@@ -111,14 +112,24 @@ namespace unicomtlc.Views.admin
         private DataTable ConvertToDataTable(List<Mark> marks)
         {
             DataTable dt = new DataTable();
+
             dt.Columns.Add("MarkID", typeof(int));
-            dt.Columns.Add("StudentID", typeof(int));
-            dt.Columns.Add("ExamID", typeof(int));
+            dt.Columns.Add("StudentID", typeof(int));   // This should be an int
+            dt.Columns.Add("StudentName", typeof(string)); // This is string
+            dt.Columns.Add("ExamID", typeof(int));      // int
+            dt.Columns.Add("ExamName", typeof(string));   // string
             dt.Columns.Add("Score", typeof(double));
 
             foreach (var mark in marks)
             {
-                dt.Rows.Add(mark.MarkID, mark.StudentID, mark.ExamID, mark.Score);
+                dt.Rows.Add(
+                    mark.MarkID,
+                    mark.StudentID,    // must be int (e.g. 101)
+                    mark.StudentName,  // string (e.g. "elappriyan")
+                    mark.ExamID,
+                    mark.ExamName,
+                    mark.Score
+                );
             }
 
             return dt;
@@ -138,6 +149,21 @@ namespace unicomtlc.Views.admin
             }
 
             return dt;
+        }
+        private void LoadMarks()
+        {
+            var markList = _markControlle.GetAllMarks();
+            var dt = ConvertToDataTable(markList);
+            stuview.DataSource = dt;
+
+            // Show StudentID column
+            if (stuview.Columns["StudentID"] != null)
+            {
+                stuview.Columns["StudentID"].Visible = true;
+                stuview.Columns["StudentID"].Visible = false;
+            }
+
+            // Similarly, control other columns visibility as needed
         }
 
         private void Button4_Click(object sender, EventArgs e)

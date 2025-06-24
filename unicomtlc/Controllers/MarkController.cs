@@ -155,11 +155,17 @@ namespace unicomtlc.Controllers
             using (var con = DB.GetConnection())
             {
                 string query = @"
-                                SELECT m.MarkID, m.StudentID, s.Name AS StudentName, e.ExamID, e.ExamName, m.Score
-                                FROM Marks m
-                                JOIN Students s ON m.StudentID = s.Id
-                                JOIN Exams e ON m.ExamID = e.ExamID
-                            ";
+                               SELECT 
+                m.MarkID, 
+                m.StudentID, 
+                s.Name AS StudentName, 
+                m.ExamID, 
+                e.ExamName, 
+                m.Score
+            FROM Marks m
+            JOIN Students s ON m.StudentID = s.Id
+            JOIN Exams e ON m.ExamID = e.ExamID"
+                            ;
 
                 using (var cmd = new SQLiteCommand(query, con))
                 using (var reader = cmd.ExecuteReader())

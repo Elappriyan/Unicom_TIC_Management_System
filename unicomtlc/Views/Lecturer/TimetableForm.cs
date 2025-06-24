@@ -234,20 +234,13 @@ namespace unicomtlc.Views
 
         private void black_Click(object sender, EventArgs e)
         {
-            /*Staffview form1 = new Staffview();
-            this.Hide();
-            form1.ShowDialog();
-
             
-            this.Show();*/
-            /*  this.Close();
-              _previousForm.Show();*/
-            this.Close();
+           
 
-            this.Close();  // Close current form
+            this.Close();  
 
             if (_previousForm != null)
-                _previousForm.Show();  // Show Adminview again
+                _previousForm.Show();  
             else
                 MessageBox.Show("Previous form reference is missing.", "Warning");
         }
